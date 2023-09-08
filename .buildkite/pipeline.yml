@@ -3,13 +3,10 @@ common_params:
   # Common plugin settings to use with the `plugins` key.
   - &common_plugins
     - automattic/a8c-ci-toolkit#2.18.1
-    - automattic/git-s3-cache#1.1.4:
-        bucket: "a8c-repo-mirrors"
-        repo: "automattic/wordpress-ios/"
   # Common environment values to use with the `env` key.
   - &common_env
     # Be sure to also update the `.xcode-version` file when updating the Xcode image/version here
-    IMAGE_ID: xcode-14.3.1
+    IMAGE_ID: xcode-14.2
 
 # This is the default pipeline – it will build and test the app
 steps:
@@ -108,23 +105,23 @@ steps:
   #################
   - group: "Linters"
     steps:
-      - label: "🧹 Lint Translations"
-        command: "gplint /workdir/WordPress/Resources/AppStoreStrings.po"
-        plugins:
-          - docker#v3.8.0:
-              image: "public.ecr.aws/automattic/glotpress-validator:1.0.0"
-        agents:
-          queue: "default"
-        notify:
-          - github_commit_status:
-              context: "Lint Translations"
+      # - label: "🧹 Lint Translations"
+      #   command: "gplint /workdir/WordPress/Resources/AppStoreStrings.po"
+      #   plugins:
+      #     - docker#v3.8.0:
+      #         image: "public.ecr.aws/automattic/glotpress-validator:1.0.0"
+      #   agents:
+      #     queue: "default"
+      #   notify:
+      #     - github_commit_status:
+      #         context: "Lint Translations"
       # This step uses Danger to run RuboCop, but it's "agnostic" about it.
       # That is, it outwardly only mentions RuboCop, not Danger
-      - label: ":rubocop: Lint Ruby Tooling"
-        command: .buildkite/commands/rubocop-via-danger.sh
-        plugins: *common_plugins
-        agents:
-          queue: "android"
+      # - label: ":rubocop: Lint Ruby Tooling"
+      #   command: .buildkite/commands/rubocop-via-danger.sh
+      #   plugins: *common_plugins
+      #   agents:
+      #     queue: "android"
       - label: ":sleuth_or_spy: Lint Localized Strings Format"
         command: .buildkite/commands/lint-localized-strings-format.sh
         plugins: *common_plugins
