@@ -8,35 +8,35 @@ import WordPressFlux
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
 fileprivate func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
+    switch (lhs, rhs) {
+    case let (l?, r?):
+        return l < r
+    case (nil, _?):
+        return true
+    default:
+        return false
+    }
 }
 
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
 fileprivate func > <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l > r
-  default:
-    return rhs < lhs
-  }
+    switch (lhs, rhs) {
+    case let (l?, r?):
+        return l > r
+    default:
+        return rhs < lhs
+    }
 }
 
 
 class AbstractPostListViewController: UIViewController,
-    WPContentSyncHelperDelegate,
-    UISearchControllerDelegate,
-    UISearchResultsUpdating,
-    WPTableViewHandlerDelegate,
-    // This protocol is not in an extension so that subclasses can override noConnectionMessage()
-    NetworkAwareUI {
+                                      WPContentSyncHelperDelegate,
+                                      UISearchControllerDelegate,
+                                      UISearchResultsUpdating,
+                                      WPTableViewHandlerDelegate,
+// This protocol is not in an extension so that subclasses can override noConnectionMessage()
+NetworkAwareUI {
 
     fileprivate static let postsControllerRefreshInterval = TimeInterval(300)
     fileprivate static let HTTPErrorCodeForbidden = Int(403)
@@ -178,6 +178,15 @@ class AbstractPostListViewController: UIViewController,
         updateSelectedFilter()
 
         refreshResults()
+
+        filterTabBar.removeFromSuperview()
+        tableView.tableHeaderView = filterTabBar
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        tableView.sizeToFitHeaderView()
     }
 
     fileprivate var searchBarHeight: CGFloat {
@@ -187,7 +196,7 @@ class AbstractPostListViewController: UIViewController,
     fileprivate func localKeyboardFrameFromNotification(_ notification: Foundation.Notification) -> CGRect {
         let key = UIResponder.keyboardFrameEndUserInfoKey
         guard let keyboardFrame = (notification.userInfo?[key] as? NSValue)?.cgRectValue else {
-                return .zero
+            return .zero
         }
 
         // Convert the frame from window coordinates
@@ -333,7 +342,7 @@ class AbstractPostListViewController: UIViewController,
             backingView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             backingView.topAnchor.constraint(equalTo: view.topAnchor),
             backingView.bottomAnchor.constraint(equalTo: topAnchor)
-            ])
+        ])
     }
 
     func configureGhostableTableView() {
@@ -342,10 +351,10 @@ class AbstractPostListViewController: UIViewController,
 
         ghostableTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            ghostableTableView.widthAnchor.constraint(equalTo: tableView.widthAnchor),
-            ghostableTableView.heightAnchor.constraint(equalTo: tableView.heightAnchor),
-            ghostableTableView.leadingAnchor.constraint(equalTo: tableView.leadingAnchor),
-            ghostableTableView.topAnchor.constraint(equalTo: searchController.searchBar.bottomAnchor)
+            ghostableTableView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            ghostableTableView.heightAnchor.constraint(equalTo: view.heightAnchor),
+            ghostableTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            ghostableTableView.topAnchor.constraint(equalTo: view.topAnchor)
         ])
 
         ghostableTableView.backgroundColor = .white
@@ -654,7 +663,7 @@ class AbstractPostListViewController: UIViewController,
             for: blog,
             success: {[weak self] posts in
                 guard let strongSelf = self,
-                    let posts = posts else {
+                      let posts = posts else {
                     return
                 }
 
@@ -673,7 +682,7 @@ class AbstractPostListViewController: UIViewController,
             }, failure: {[weak self] (error: Error?) -> () in
 
                 guard let strongSelf = self,
-                    let error = error else {
+                      let error = error else {
                     return
                 }
 
@@ -682,7 +691,7 @@ class AbstractPostListViewController: UIViewController,
                 if userInteraction == true {
                     strongSelf.handleSyncFailure(error as NSError)
                 }
-        })
+            })
     }
 
     let loadMoreCounter = LoadMoreCounter()
@@ -711,8 +720,8 @@ class AbstractPostListViewController: UIViewController,
             for: blog,
             success: {[weak self] posts in
                 guard let strongSelf = self,
-                    let posts = posts else {
-                        return
+                      let posts = posts else {
+                    return
                 }
 
                 if posts.count > 0 {

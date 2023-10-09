@@ -322,23 +322,25 @@ class PostListViewController: AbstractPostListViewController, UIViewControllerRe
     override func configureSearchController() {
         super.configureSearchController()
 
-        searchWrapperView.addSubview(searchController.searchBar)
+        navigationItem.searchController = searchController
 
-        tableView.verticalScrollIndicatorInsets.top = searchController.searchBar.bounds.height
+//        searchWrapperView.addSubview(searchController.searchBar)
+
+//        tableView.verticalScrollIndicatorInsets.top = searchController.searchBar.bounds.height
 
         updateTableHeaderSize()
     }
 
     fileprivate func updateTableHeaderSize() {
-        if searchController.isActive {
-            // Account for the search bar being moved to the top of the screen.
-            searchWrapperView.frame.size.height = 0
-        } else {
-            searchWrapperView.frame.size.height = searchController.searchBar.bounds.height
-        }
-
-        // Resetting the tableHeaderView is necessary to get the new height to take effect
-        tableView.tableHeaderView = searchWrapperView
+//        if searchController.isActive {
+//            // Account for the search bar being moved to the top of the screen.
+//            searchWrapperView.frame.size.height = 0
+//        } else {
+//            searchWrapperView.frame.size.height = searchController.searchBar.bounds.height
+//        }
+//
+//        // Resetting the tableHeaderView is necessary to get the new height to take effect
+//        tableView.tableHeaderView = searchWrapperView
     }
 
     func showCompactOrDefault() {
@@ -771,8 +773,8 @@ class PostListViewController: AbstractPostListViewController, UIViewControllerRe
         updateTableHeaderSize()
         _tableViewHandler.isSearching = true
 
-        tableView.verticalScrollIndicatorInsets.top = searchWrapperView.bounds.height
-        tableView.contentInset.top = 0
+//        tableView.verticalScrollIndicatorInsets.top = searchWrapperView.bounds.height
+//        tableView.contentInset.top = 0
     }
 
     override func sortDescriptorsForFetchRequest() -> [NSSortDescriptor] {
