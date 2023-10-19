@@ -37,6 +37,8 @@ class AbstractPostListViewController: UIViewController,
     private(set) var ghostableTableView = UITableView()
     var ghostingEnabled = false
 
+    let postRepository: PostRepository = PostRepository(coreDataStack: ContextManager.shared)
+
     @objc var blog: Blog!
 
     /// This closure will be executed whenever the noResultsView must be visually refreshed.  It's up
@@ -565,6 +567,10 @@ class AbstractPostListViewController: UIViewController,
     }
 
     @objc func updateFilter(_ filter: PostListFilter, withSyncedPosts posts: [AbstractPost], syncOptions options: PostServiceSyncOptions) {
+        updateFilter(filter, withSyncedPosts: posts, hasMore: posts.count >= options.number.intValue)
+    }
+
+    @objc func updateFilter(_ filter: PostListFilter, withSyncedPosts posts: [AbstractPost], hasMore: Bool) {
         guard posts.count > 0 else {
             assertionFailure("This method should not be called with no posts.")
             return
@@ -574,7 +580,7 @@ class AbstractPostListViewController: UIViewController,
         // differing time offsets in the created dates.
         let oldestPost = posts.min { ($0.date_created_gmt ?? .distantPast) < ($1.date_created_gmt ?? .distantPast) }
         filter.oldestPostDate = oldestPost?.date_created_gmt
-        filter.hasMore = posts.count >= options.number.intValue
+        filter.hasMore = hasMore
 
         updateAndPerformFetchRequestRefreshingResults()
     }
@@ -602,44 +608,38 @@ class AbstractPostListViewController: UIViewController,
         let postType = postTypeToSync()
         let filter = filterSettings.currentPostListFilter()
         let author = filterSettings.shouldShowOnlyMyPosts() ? blogUserID() : nil
-
-        let postService = PostService(managedObjectContext: managedObjectContext())
-
-        let options = PostServiceSyncOptions()
-        options.statuses = filter.statuses.strings
-        options.authorID = author
-        options.number = numberOfLoadedElement
-        options.purgesLocalSync = true
-
-        postService.syncPosts(
-            ofType: postType,
-            with: options,
-            for: blog,
-            success: {[weak self] posts in
-                guard let strongSelf = self,
-                    let posts = posts else {
-                    return
-                }
-
-                if posts.count > 0 {
-                    strongSelf.updateFilter(filter, withSyncedPosts: posts, syncOptions: options)
-                    SearchManager.shared.indexItems(posts)
-                }
-
-                success?(filter.hasMore)
-            }, failure: {[weak self] (error: Error?) -> () in
-
-                guard let strongSelf = self,
-                    let error = error else {
-                    return
-                }
-
+        let number = numberOfLoadedElement.intValue
+        Task { @MainActor [weak self, postRepository, blogID = TaggedManagedObjectID(blog)] in
+            let posts: [AbstractPost]
+            do {
+                let postIDs = try await postRepository.paginate(
+                    type: postType == .page ? Page.self : Post.self,
+                    statuses: filter.statuses,
+                    authorUserID: author,
+                    offset: 0,
+                    number: number,
+                    in: blogID
+                )
+                posts = try postIDs.map { try ContextManager.shared.mainContext.existingObject(with: $0) }
+            } catch {
                 failure?(error as NSError)
 
-                if userInteraction == true {
-                    strongSelf.handleSyncFailure(error as NSError)
+                if userInteraction {
+                    self?.handleSyncFailure(error as NSError)
                 }
-        })
+
+                return
+            }
+
+            guard let self else { return }
+
+            if posts.count > 0 {
+                self.updateFilter(filter, withSyncedPosts: posts, hasMore: posts.count >= number)
+                SearchManager.shared.indexItems(posts)
+            }
+
+            success?(filter.hasMore)
+        }
     }
 
     let loadMoreCounter = LoadMoreCounter()
@@ -653,39 +653,34 @@ class AbstractPostListViewController: UIViewController,
         let postType = postTypeToSync()
         let filter = filterSettings.currentPostListFilter()
         let author = filterSettings.shouldShowOnlyMyPosts() ? blogUserID() : nil
-
-        let postService = PostService(managedObjectContext: managedObjectContext())
-
-        let options = PostServiceSyncOptions()
-        options.statuses = filter.statuses.strings
-        options.authorID = author
-        options.number = numberOfLoadedElement
-        options.offset = tableViewHandler.resultsController?.fetchedObjects?.count as NSNumber?
-
-        postService.syncPosts(
-            ofType: postType,
-            with: options,
-            for: blog,
-            success: {[weak self] posts in
-                guard let strongSelf = self,
-                    let posts = posts else {
-                        return
-                }
-
-                if posts.count > 0 {
-                    strongSelf.updateFilter(filter, withSyncedPosts: posts, syncOptions: options)
-                    SearchManager.shared.indexItems(posts)
-                }
-
-                success?(filter.hasMore)
-            }, failure: { (error) -> () in
-
-                guard let error = error else {
-                    return
-                }
-
+        let offset = tableViewHandler.resultsController?.fetchedObjects?.count ?? 0
+        let number = numberOfLoadedElement.intValue
+        Task { @MainActor [weak self, postRepository, blogID = TaggedManagedObjectID(blog)] in
+            let posts: [AbstractPost]
+            do {
+                let postIDs = try await postRepository.paginate(
+                    type: postType == .page ? Page.self : Post.self,
+                    statuses: filter.statuses,
+                    authorUserID: author,
+                    offset: offset,
+                    number: number,
+                    in: blogID
+                )
+                posts = try postIDs.map { try ContextManager.shared.mainContext.existingObject(with: $0) }
+            } catch {
                 failure?(error as NSError)
-            })
+                return
+            }
+
+            guard let self else { return }
+
+            if posts.count > 0 {
+                self.updateFilter(filter, withSyncedPosts: posts, hasMore: posts.count >= number)
+                SearchManager.shared.indexItems(posts)
+            }
+
+            success?(filter.hasMore)
+        }
     }
 
     func syncContentStart(_ syncHelper: WPContentSyncHelper) {
