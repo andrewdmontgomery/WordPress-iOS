@@ -9,17 +9,19 @@ final class PostSearchViewModel: NSObject, NSFetchedResultsControllerDelegate {
     private let blog: Blog
     private let filters: PostListFilterSettings
     private let coreDataStack: CoreDataStack
+    private let postRepository: PostRepository
 
     private var cancellables: [AnyCancellable] = []
     private var fetchResultsController: NSFetchedResultsController<BasePost>!
 
     init(blog: Blog,
          filters: PostListFilterSettings,
-         coreDataStack: CoreDataStack = ContextManager.shared
+         coreDataStack: CoreDataStackSwift = ContextManager.shared
     ) {
         self.blog = blog
         self.filters = filters
         self.coreDataStack = coreDataStack
+        self.postRepository = PostRepository(coreDataStack: coreDataStack)
         super.init()
 
         fetchResultsController = NSFetchedResultsController(
@@ -119,22 +121,31 @@ final class PostSearchViewModel: NSObject, NSFetchedResultsControllerDelegate {
     // MARK: - Remote Search (Sync)
 
     private func syncPostsMatchingSearchTerm(_ searchTerm: String) {
-        let postService = PostService(managedObjectContext: coreDataStack.mainContext)
-
-        let options = PostServiceSyncOptions()
-        options.number = 20
-        options.purgesLocalSync = false
-        options.search = searchTerm
-        if filters.shouldShowOnlyMyPosts(), let userID = blog.userID {
-            options.authorID = userID
+        let postType: AbstractPost.Type
+        switch filters.postType {
+        case .post: postType = Post.self
+        case .page: postType = Page.self
+        default:
+            fatalError("Unsupported post type: \(filters.postType)")
         }
 
-        postService.syncPosts(
-            ofType: filters.postType,
-            with: options,
-            for: blog,
-            success: { _ in },
-            failure: { _ in }
-        )
+        let author = filters.shouldShowOnlyMyPosts() ? blog.userID : nil
+        let blogID = TaggedManagedObjectID(blog)
+        Task {
+            do {
+                _ = try await postRepository.search(
+                    type: postType,
+                    input: searchTerm,
+                    statuses: [],
+                    authorUserID: author,
+                    limit: 20,
+                    orderBy: .byDate,
+                    descending: true,
+                    in: blogID
+                )
+            } catch {
+                DDLogError("Failed to search \(filters.postType): \(error)")
+            }
+        }
     }
 }
