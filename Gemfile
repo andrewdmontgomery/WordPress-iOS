@@ -2,10 +2,7 @@
 
 source 'https://rubygems.org'
 
-# fix activesupport to 7.0.8 due to a bug with >=7.1.0 in cocoapods (https://github.com/CocoaPods/CocoaPods/issues/12081)
-gem 'activesupport', '7.0.8'
-# 1.12.x and higher, starting from 1.12.1, because that hotfix fixes Xcode 14.3 compatibility
-gem 'cocoapods', '~> 1.12', '>= 1.12.1'
+gem 'cocoapods', '~> 1.14'
 gem 'commonmarker'
 gem 'danger-dangermattic', git: 'https://github.com/Automattic/dangermattic'
 gem 'dotenv'
