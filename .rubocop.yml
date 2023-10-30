@@ -36,3 +36,6 @@ Style/AsciiComments:
 Naming/FileName:
   Exclude:
     - fastlane/Matchfile
+
+Style/HashSyntax:
+  EnforcedShorthandSyntax: never
