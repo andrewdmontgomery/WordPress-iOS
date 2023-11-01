@@ -93,11 +93,10 @@ final class BlogBuilder {
     }
 
     func withAnAccount(username: String = "test_user") -> Self {
-        // Add Account
-        let account = NSEntityDescription.insertNewObject(forEntityName: WPAccount.entityName(), into: context) as! WPAccount
-        account.displayName = "displayName"
-        account.username = username
-        blog.account = account
+        blog.account = AccountBuilder(context)
+            .with(username: username)
+            .with(displayName: "displayName") // Is this required?
+            .build()
 
         return self
     }
@@ -216,12 +215,15 @@ final class BlogBuilder {
 
 extension Blog {
     func supportsWPComAPI() {
+        // Should this throw or crash? It would be an inconsistent state, no?
         guard let context = managedObjectContext else {
             return
         }
 
-        let account = NSEntityDescription.insertNewObject(forEntityName: WPAccount.entityName(), into: context) as! WPAccount
-        account.username = "foo"
+        let account = AccountBuilder(context)
+            .with(username: "foo")
+            .build()
+
         account.addBlogsObject(self)
     }
 }
