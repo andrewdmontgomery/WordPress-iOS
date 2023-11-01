@@ -11,10 +11,8 @@ class MediaLibraryPickerDataSourceTests: CoreDataTestCase {
 
     override func setUp() {
         super.setUp()
-        blog = NSEntityDescription.insertNewObject(forEntityName: "Blog", into: mainContext) as? Blog
-        blog.url = "http://wordpress.com"
-        blog.xmlrpc = "http://wordpress.com"
-        post = NSEntityDescription.insertNewObject(forEntityName: Post.entityName(), into: mainContext) as? Post
+        blog = BlogBuilder(mainContext).build()
+        post = PostBuilder(mainContext).build()
         post.blog = blog
         dataSource = MediaLibraryPickerDataSource(blog: blog)
     }

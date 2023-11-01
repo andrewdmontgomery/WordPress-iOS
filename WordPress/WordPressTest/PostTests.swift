@@ -6,19 +6,15 @@ import XCTest
 class PostTests: CoreDataTestCase {
 
     fileprivate func newTestBlog() -> Blog {
-        return NSEntityDescription.insertNewObject(forEntityName: "Blog", into: mainContext) as! Blog
+        return BlogBuilder(mainContext).build()
     }
 
     fileprivate func newTestPost() -> Post {
-        return NSEntityDescription.insertNewObject(forEntityName: Post.entityName(), into: mainContext) as! Post
-    }
-
-    fileprivate func newTestPostCategory() -> PostCategory {
-        return NSEntityDescription.insertNewObject(forEntityName: "Category", into: mainContext) as! PostCategory
+        return PostBuilder(mainContext).build()
     }
 
     fileprivate func newTestPostCategory(_ name: String) -> PostCategory {
-        let category = newTestPostCategory()
+        let category = NSEntityDescription.insertNewObject(forEntityName: "Category", into: mainContext) as! PostCategory
         category.categoryName = name
 
         return category
@@ -433,8 +429,11 @@ class PostTests: CoreDataTestCase {
         post.publicID = "90210"
         post.tags = "lorem,ipsum,test"
         post.isStickyPost = true
+        post.blog.dotComID = 0
+        post.postID = 0
 
-        let correctHash = "4889b28f7061f11ea295583a34decf42b3cba7191912b3d2ed0472362495b0d2"
+
+        let correctHash = "b3637b89ce0463a4381e9a58d3836f0a1b28b6a38cd0dec6e71f50b94f313a09"
 
         XCTAssertEqual(post.calculateConfirmedChangesContentHash(), correctHash)
 
