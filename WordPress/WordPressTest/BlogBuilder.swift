@@ -101,6 +101,12 @@ final class BlogBuilder {
         return self
     }
 
+    func with(account: WPAccount) -> Self {
+        blog.account = account
+
+        return self
+    }
+
     func isHostedAtWPcom() -> Self {
         blog.isHostedAtWPcom = true
 
@@ -134,8 +140,11 @@ final class BlogBuilder {
         return self
     }
 
-    func with(url: String) -> Self {
+    /// By default, the XML RPC URL is the Blog URL with the appended path `xmlrpc.php`.
+    /// Pass a value to the optional `xmlRPCURL` parameter to override it.
+    func with(url: String, xmlRPCURL: String? = .none) -> Self {
         blog.url = url
+        blog.xmlrpc = xmlRPCURL ?? "\(url)/xmlrpc.php"
 
         return self
     }

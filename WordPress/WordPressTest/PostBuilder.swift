@@ -72,6 +72,12 @@ class PostBuilder {
         return self
     }
 
+    // FIXME: `id` is `Optional<Int>` because a consumer sets it as `nil`, but why can we have a post with no `id`?
+    func with(id: Int?) -> PostBuilder {
+        post.postID = id.map { $0 as NSNumber }
+        return self
+    }
+
 
     func withImage() -> PostBuilder {
         post.pathForDisplayImage = "https://localhost/image.png"

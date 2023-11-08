@@ -150,20 +150,18 @@ private extension BlogServiceDeduplicationTests {
 
     @discardableResult
     func createBlog(id: Int, url: String, account: WPAccount) -> Blog {
-        let blog = NSEntityDescription.insertNewObject(forEntityName: "Blog", into: mainContext) as! Blog
-        blog.dotComID = id as NSNumber
-        blog.url = url
-        blog.xmlrpc = url
-        blog.account = account
-        return blog
+        BlogBuilder(mainContext)
+            .with(dotComID: id)
+            .with(url: url)
+            .with(account: account)
+            .build()
     }
 
     @discardableResult
     func createDraft(title: String, blog: Blog, id: Int? = nil) -> AbstractPost {
-        let post = NSEntityDescription.insertNewObject(forEntityName: "Post", into: mainContext) as! Post
-        post.postTitle = title
-        post.blog = blog
-        post.postID = id.map({ $0 as NSNumber })
-        return post
+        PostBuilder(mainContext, blog: blog)
+            .with(title: title)
+            .with(id: id )
+            .build()
     }
 }
