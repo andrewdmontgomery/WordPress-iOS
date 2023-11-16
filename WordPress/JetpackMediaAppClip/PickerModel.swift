@@ -78,12 +78,6 @@ class PickerModel: ObservableObject {
         }
 
         URLSession.shared.uploadTask(with: req, from: photoData).resume()
-
-//        do {
-//            try URLSession.shared.uploadTask(with: req, from: photoData).resume()
-//        } catch {
-//            print("Error uploading: \(error)")
-//        }
     }
 }
 
