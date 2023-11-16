@@ -51,7 +51,7 @@ extension NSNotification.Name {
 }
 
 class ReadingTimeObserver: ObservableObject {
-    @Published var timeSpentReading: TimeInterval
+    @Published var timeSpentReading: [ReadingSession]
 
     private var observer: NSObjectProtocol?
 
@@ -74,6 +74,9 @@ class ReadingTimeObserver: ObservableObject {
 }
 
 struct ReadingStatsView: View {
+
+    @StateObject private var readingTimeObserver = ReadingTimeObserver()
+
     var body: some View {
         VStack(spacing: 24.0) {
             heroView
@@ -91,7 +94,7 @@ struct ReadingStatsView: View {
                 .padding(4.0)
                 .foregroundColor(.white)
                 .background(Circle().fill(.black))
-            Text(formatTimeInterval(readingTimeObserver.timeSpentReading))
+            Text(formatTimeInterval(readingTimeObserver.timeSpentReading.reduce(0) { $0 + $1.timeSpent }))
                 .font(.title)
                 .fontWeight(.bold)
             Text("Reading time this week")
@@ -109,22 +112,46 @@ struct ReadingStatsView: View {
             Text("YOUR FAVORITE BLOGS")
                 .font(.caption)
                 .foregroundColor(.secondary)
-            HStack(alignment: .top) {
-                ForEach(0..<3) { _ in // Replace with actual data
+            HStack {
+                ForEach(readingTimeObserver.timeSpentReading, id: \.blogName) { session in
                     VStack {
-                        Image("gravatar") // Replace with actual image
-                            .resizable()
-                            .scaledToFit()
-                            .clipShape(Circle())
-                            .frame(width: 64.0, height: 64.0) // Adjust size as needed
-                        Text("Culinary Wunderlust") // Replace with actual data
-                            .font(.footnote)
-                            .multilineTextAlignment(.center)
-                    }
+                        if let url = URL(string: session.siteIconURL) {
+                            AsyncImage(url: url) { image in
+                                image
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .clipShape(Circle())
+                                    .frame(width: 64.0, height: 64.0) // Adjust size as needed
+                            } placeholder: {
+                                Circle()
+                                    .fill(Color.gray.opacity(0.3))
+                                    .frame(width: 64, height: 64)
+                            }
+                        } else {
+                            Image("gravatar") // Replace with actual image
+                                .resizable()
+                                .scaledToFit()
+                                .clipShape(Circle())
+                                .frame(width: 64.0, height: 64.0) // Adjust size as needed
+                        }
+
+                        Text(session.blogName) // Replace with actual data
+                             .font(.footnote)
+                             .multilineTextAlignment(.center)
+                     }
                     .frame(minWidth: 0, maxWidth: .infinity) // keeps the elements equally-sized within the HStack.
-                }
+                 }
             }
         }
+    }
+
+    func formatTimeInterval(_ interval: TimeInterval) -> String {
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.hour, .minute]
+        formatter.unitsStyle = .abbreviated
+        formatter.zeroFormattingBehavior = [.dropLeading, .pad]
+
+        return formatter.string(from: interval) ?? ""
     }
 }
 
@@ -132,7 +159,6 @@ struct DashboardReadingStatsCardView: View {
     var buttonAction: () -> ()
     @State private var capturedImage: UIImage?
     @State private var isShareSheetPresented = false
-    @StateObject private var readingTimeObserver = ReadingTimeObserver()
 
     init(buttonAction: @escaping () -> ()) {
         self.buttonAction = buttonAction
@@ -158,15 +184,6 @@ struct DashboardReadingStatsCardView: View {
                 ShareSheet(activityItems: [image])
             }
         })
-    }
-
-    func formatTimeInterval(_ interval: TimeInterval) -> String {
-        let formatter = DateComponentsFormatter()
-        formatter.allowedUnits = [.hour, .minute]
-        formatter.unitsStyle = .abbreviated
-        formatter.zeroFormattingBehavior = [.dropLeading, .pad]
-
-        return formatter.string(from: interval) ?? ""
     }
 }
 

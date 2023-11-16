@@ -1,5 +1,20 @@
 import Foundation
 
+import Foundation
+
+@objc class ReadingSession: NSObject, Codable {
+    var blogName: String
+    var siteIconURL: String
+    var timeSpent: TimeInterval
+
+    init(blogName: String, siteIconURL: String, timeSpent: TimeInterval) {
+        self.blogName = blogName
+        self.siteIconURL = siteIconURL
+        self.timeSpent = timeSpent
+    }
+}
+
+
 class ReaderTracker: NSObject {
     @objc static let shared = ReaderTracker()
 
@@ -12,14 +27,35 @@ class ReaderTracker: NSObject {
         }
     }
 
-    var timeSpentReading: TimeInterval {
+    var timeSpentReading: [ReadingSession] {
         get {
-            UserDefaults.standard.value(forKey: "time_spent_reading") as? TimeInterval ?? 0
+            if let data = UserDefaults.standard.data(forKey: "readingSessions") {
+                return (try? JSONDecoder().decode([ReadingSession].self, from: data)) ?? []
+            }
+            return []
         }
         set {
-            UserDefaults.standard.setValue(newValue, forKey: "time_spent_reading")
+            let data = try? JSONEncoder().encode(newValue)
+            UserDefaults.standard.set(data, forKey: "readingSessions")
             NotificationCenter.default.post(name: .timeSpentReadingDidChange, object: nil)
         }
+    }
+
+    func updateTimeSpentReading(blogName: String, siteIconURL: String, additionalTime: TimeInterval) {
+        if let index = timeSpentReading.firstIndex(where: { $0.blogName == blogName }) {
+            timeSpentReading[index].timeSpent += additionalTime
+        } else {
+            let newSession = ReadingSession(blogName: blogName, siteIconURL: siteIconURL, timeSpent: additionalTime)
+            var current = timeSpentReading
+            current.append(newSession)
+            timeSpentReading = current
+        }
+        timeSpentReading.sort { $0.timeSpent > $1.timeSpent }
+    }
+
+    // This computed property returns the top three reading sessions.
+    @objc var topThreeReadingSessions: [ReadingSession] {
+        return Array(timeSpentReading.prefix(3))
     }
 
     enum Section: String, CaseIterable {
@@ -83,8 +119,9 @@ class ReaderTracker: NSObject {
             }
         }
 
-        if section == .readerPost {
-            timeSpentReading += totalTimeInSeconds[section] ?? 0
+        if section == .readerPost, let post = post, let additionalTime = totalTimeInSeconds[section] {
+            updateTimeSpentReading(blogName: post.blogName, siteIconURL: post.siteIconURL, additionalTime: additionalTime)
+            self.totalTimeInSeconds.removeValue(forKey: section)
         }
     }
 
