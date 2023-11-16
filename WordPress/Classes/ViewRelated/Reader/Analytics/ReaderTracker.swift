@@ -18,6 +18,7 @@ class ReaderTracker: NSObject {
         }
         set {
             UserDefaults.standard.setValue(newValue, forKey: "time_spent_reading")
+            NotificationCenter.default.post(name: .timeSpentReadingDidChange, object: nil)
         }
     }
 
@@ -79,8 +80,11 @@ class ReaderTracker: NSObject {
                 var currentPosts = readPosts
                 currentPosts.append(postID)
                 readPosts = currentPosts
-                timeSpentReading += timeSpent
             }
+        }
+
+        if section == .readerPost {
+            timeSpentReading += totalTimeInSeconds[section] ?? 0
         }
     }
 

@@ -46,6 +46,33 @@ struct ShareSheet: UIViewControllerRepresentable {
     }
 }
 
+extension NSNotification.Name {
+    static let timeSpentReadingDidChange = NSNotification.Name(rawValue: "timeSpentReadingDidChange")
+}
+
+class ReadingTimeObserver: ObservableObject {
+    @Published var timeSpentReading: TimeInterval
+
+    private var observer: NSObjectProtocol?
+
+    init() {
+        timeSpentReading = ReaderTracker.shared.timeSpentReading
+        observer = NotificationCenter.default.addObserver(
+            forName: .timeSpentReadingDidChange,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            self?.timeSpentReading = ReaderTracker.shared.timeSpentReading
+        }
+    }
+
+    deinit {
+        if let observer = observer {
+            NotificationCenter.default.removeObserver(observer)
+        }
+    }
+}
+
 struct ReadingStatsView: View {
     var body: some View {
         VStack(spacing: 24.0) {
@@ -64,7 +91,7 @@ struct ReadingStatsView: View {
                 .padding(4.0)
                 .foregroundColor(.white)
                 .background(Circle().fill(.black))
-            Text("47 mins")
+            Text(formatTimeInterval(readingTimeObserver.timeSpentReading))
                 .font(.title)
                 .fontWeight(.bold)
             Text("Reading time this week")
@@ -105,6 +132,7 @@ struct DashboardReadingStatsCardView: View {
     var buttonAction: () -> ()
     @State private var capturedImage: UIImage?
     @State private var isShareSheetPresented = false
+    @StateObject private var readingTimeObserver = ReadingTimeObserver()
 
     init(buttonAction: @escaping () -> ()) {
         self.buttonAction = buttonAction
@@ -130,6 +158,15 @@ struct DashboardReadingStatsCardView: View {
                 ShareSheet(activityItems: [image])
             }
         })
+    }
+
+    func formatTimeInterval(_ interval: TimeInterval) -> String {
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.hour, .minute]
+        formatter.unitsStyle = .abbreviated
+        formatter.zeroFormattingBehavior = [.dropLeading, .pad]
+
+        return formatter.string(from: interval) ?? ""
     }
 }
 
