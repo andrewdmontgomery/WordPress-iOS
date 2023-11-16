@@ -135,6 +135,8 @@
 		011752AB2B062E8200FFE4BF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 011752AA2B062E8200FFE4BF /* Preview Assets.xcassets */; };
 		011752B72B062E8500FFE4BF /* JetpackMediaAppClipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011752B62B062E8500FFE4BF /* JetpackMediaAppClipTests.swift */; };
 		011752C62B062E8600FFE4BF /* JetpackMediaAppClip.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = 011752A12B062E8000FFE4BF /* JetpackMediaAppClip.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		011752D82B0631FD00FFE4BF /* MediaPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011752D72B0631FD00FFE4BF /* MediaPicker.swift */; };
+		011752DA2B06320A00FFE4BF /* PickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011752D92B06320A00FFE4BF /* PickerModel.swift */; };
 		011896A229D5AF0700D34BA9 /* BlogDashboardCardConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011896A129D5AF0700D34BA9 /* BlogDashboardCardConfigurable.swift */; };
 		011896A329D5AF0700D34BA9 /* BlogDashboardCardConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011896A129D5AF0700D34BA9 /* BlogDashboardCardConfigurable.swift */; };
 		011896A529D5B72500D34BA9 /* DomainsDashboardCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011896A429D5B72500D34BA9 /* DomainsDashboardCoordinator.swift */; };
@@ -5905,6 +5907,8 @@
 		011752AD2B062E8200FFE4BF /* JetpackMediaAppClip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JetpackMediaAppClip.entitlements; sourceTree = "<group>"; };
 		011752B22B062E8200FFE4BF /* JetpackMediaAppClipTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JetpackMediaAppClipTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		011752B62B062E8500FFE4BF /* JetpackMediaAppClipTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JetpackMediaAppClipTests.swift; sourceTree = "<group>"; };
+		011752D72B0631FD00FFE4BF /* MediaPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPicker.swift; sourceTree = "<group>"; };
+		011752D92B06320A00FFE4BF /* PickerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerModel.swift; sourceTree = "<group>"; };
 		011896A129D5AF0700D34BA9 /* BlogDashboardCardConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogDashboardCardConfigurable.swift; sourceTree = "<group>"; };
 		011896A429D5B72500D34BA9 /* DomainsDashboardCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainsDashboardCoordinator.swift; sourceTree = "<group>"; };
 		011896A729D5BBB400D34BA9 /* DomainsDashboardFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainsDashboardFactory.swift; sourceTree = "<group>"; };
@@ -9889,6 +9893,8 @@
 			children = (
 				011752A32B062E8100FFE4BF /* JetpackMediaAppClipApp.swift */,
 				011752A52B062E8100FFE4BF /* ContentView.swift */,
+				011752D72B0631FD00FFE4BF /* MediaPicker.swift */,
+				011752D92B06320A00FFE4BF /* PickerModel.swift */,
 				011752A72B062E8200FFE4BF /* Assets.xcassets */,
 				011752AC2B062E8200FFE4BF /* Info.plist */,
 				011752AD2B062E8200FFE4BF /* JetpackMediaAppClip.entitlements */,
@@ -21233,7 +21239,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				011752A62B062E8100FFE4BF /* ContentView.swift in Sources */,
+				011752D82B0631FD00FFE4BF /* MediaPicker.swift in Sources */,
 				011752A42B062E8100FFE4BF /* JetpackMediaAppClipApp.swift in Sources */,
+				011752DA2B06320A00FFE4BF /* PickerModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

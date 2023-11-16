@@ -1,25 +1,19 @@
-//
-//  ContentView.swift
-//  JetpackMediaAppClip
-//
-//  Created by Povilas Staskus on 16/11/2023.
-//  Copyright © 2023 WordPress. All rights reserved.
-//
-
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var vm = PickerModel()
+
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            MediaPicker(vm: vm)
         }
+        .onContinueUserActivity(NSUserActivityTypeBrowsingWeb, perform: { userActivity in
+            // grab the payload from the URL that loaded the App Clip
+            guard let url = userActivity.webpageURL else {
+                return
+            }
+            vm.processUrl(url)
+        })
         .padding()
     }
-}
-
-#Preview {
-    ContentView()
 }
