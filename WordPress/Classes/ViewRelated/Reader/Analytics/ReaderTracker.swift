@@ -43,7 +43,9 @@ class ReaderTracker: NSObject {
 
     func updateTimeSpentReading(blogName: String, siteIconURL: String, additionalTime: TimeInterval) {
         if let index = timeSpentReading.firstIndex(where: { $0.blogName == blogName }) {
-            timeSpentReading[index].timeSpent += additionalTime
+            var current = timeSpentReading
+            current[index].timeSpent += additionalTime
+            timeSpentReading = current
         } else {
             let newSession = ReadingSession(blogName: blogName, siteIconURL: siteIconURL, timeSpent: additionalTime)
             var current = timeSpentReading

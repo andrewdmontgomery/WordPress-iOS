@@ -1,36 +1,6 @@
 import UIKit
 import SwiftUI
 
-final class DashboardReadingStatsViewModel {
-    private enum Constants {
-        static let transferDomainsURL = "https://wordpress.com/transfer-google-domains/"
-    }
-
-    private let tracker: EventTracker
-//    weak var cell: DashboardGoogleDomainsCardCellProtocol?
-
-    init(tracker: EventTracker = DefaultEventTracker()) {
-        self.tracker = tracker
-    }
-
-    func didShowCard() {
-        //tracker.track(.domainTransferShown)
-    }
-
-    func didTapTransferDomains() {
-        guard let url = URL(string: Constants.transferDomainsURL) else {
-            return
-        }
-
-        //cell?.presentGoogleDomainsWebView(with: url)
-        tracker.track(.domainTransferButtonTapped)
-    }
-
-    func didTapMore() {
-        tracker.track(.domainTransferMoreTapped)
-    }
-}
-
 
 struct ShareSheet: UIViewControllerRepresentable {
     var activityItems: [Any]
@@ -56,7 +26,7 @@ class ReadingTimeObserver: ObservableObject {
     private var observer: NSObjectProtocol?
 
     init() {
-        timeSpentReading = ReaderTracker.shared.timeSpentReading
+        timeSpentReading = ReaderTracker.shared.topThreeReadingSessions
         observer = NotificationCenter.default.addObserver(
             forName: .timeSpentReadingDidChange,
             object: nil,
@@ -147,7 +117,7 @@ struct ReadingStatsView: View {
 
     func formatTimeInterval(_ interval: TimeInterval) -> String {
         let formatter = DateComponentsFormatter()
-        formatter.allowedUnits = [.hour, .minute]
+        formatter.allowedUnits = [.hour, .minute, .second]
         formatter.unitsStyle = .abbreviated
         formatter.zeroFormattingBehavior = [.dropLeading, .pad]
 
@@ -194,8 +164,6 @@ final class DashboardReadingStatsCell: DashboardCollectionViewCell {
     private weak var presentingViewController: UIViewController?
     private var didConfigureHostingController = false
 
-    var viewModel: DashboardReadingStatsViewModel?
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupFrameView()
@@ -209,7 +177,6 @@ final class DashboardReadingStatsCell: DashboardCollectionViewCell {
         self.presentingViewController = viewController
 
         if let presentingViewController, !didConfigureHostingController {
-            self.viewModel = DashboardReadingStatsViewModel()
             let cardView = DashboardReadingStatsCardView(buttonAction: { [weak self] in
                 let image = self?.takeScreenshot()
                 let activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
@@ -233,7 +200,7 @@ final class DashboardReadingStatsCell: DashboardCollectionViewCell {
             hostingController.didMove(toParent: presentingViewController)
             configureMoreButton(with: blog)
 
-            viewModel?.didShowCard()
+            //viewModel?.didShowCard()
 
             didConfigureHostingController = true
         }
@@ -242,7 +209,7 @@ final class DashboardReadingStatsCell: DashboardCollectionViewCell {
     private func setupFrameView() {
         frameView.setTitle("Reading stats")
         frameView.onEllipsisButtonTap = { [weak self] in
-            self?.viewModel?.didTapMore()
+//            self?.viewModel?.didTapMore()
         }
         frameView.ellipsisButton.showsMenuAsPrimaryAction = true
         frameView.onViewTap = { [weak self] in
@@ -250,7 +217,7 @@ final class DashboardReadingStatsCell: DashboardCollectionViewCell {
                 return
             }
 
-            self.viewModel?.didTapTransferDomains()
+//            self.viewModel?.didTapTransferDomains()
         }
     }
 
