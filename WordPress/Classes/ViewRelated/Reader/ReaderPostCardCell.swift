@@ -16,6 +16,12 @@ class ReaderPostCardCell: UITableViewCell {
 
     private let postTitleLabel = UILabel()
     private let postSummaryLabel = UILabel()
+
+    // reading time component
+    private let readingTimeStackView = UIStackView()
+    private let readingTimeIconImageView = UIImageView(frame: .init(origin: .zero, size: Constants.readingTimeIconSize))
+    private let readingTimeLabel = UILabel()
+
     private let featuredImageView = CachedAnimatedImageView()
     private let postCountsLabel = UILabel()
 
@@ -117,6 +123,7 @@ class ReaderPostCardCell: UITableViewCell {
         }
 
         static let iconImageSize: CGFloat = 20.0
+        static let readingTimeIconSize = CGSize(width: 16.0, height: 16.0)
         static let avatarPlaceholder = UIImage(named: "gravatar")
         static let siteIconPlaceholder = UIImage(named: "post-blavatar-placeholder")
         static let fillerViewHuggingPriority = UILayoutPriority(249.0)
@@ -179,6 +186,7 @@ private extension ReaderPostCardCell {
 
         setupPostTitle()
         setupPostSummary()
+        setupReadingTime()
         setupFeaturedImage()
         setupPostCounts()
 
@@ -284,6 +292,29 @@ private extension ReaderPostCardCell {
         postSummaryLabel.font = .preferredFont(forTextStyle: .footnote)
         postSummaryLabel.numberOfLines = 3
         contentStackView.addArrangedSubview(postSummaryLabel)
+        contentStackView.setCustomSpacing(4.0, after: postSummaryLabel)
+    }
+
+    func setupReadingTime() {
+        readingTimeIconImageView.translatesAutoresizingMaskIntoConstraints = false
+        readingTimeIconImageView.image = UIImage(named: "icon-reader-timer")
+        readingTimeIconImageView.tintColor = .secondaryLabel
+
+        // TODO: Grow along with the font size?
+        NSLayoutConstraint.activate([
+            readingTimeIconImageView.widthAnchor.constraint(equalToConstant: Constants.readingTimeIconSize.width),
+            readingTimeIconImageView.heightAnchor.constraint(equalToConstant: Constants.readingTimeIconSize.height)
+        ])
+
+        readingTimeLabel.translatesAutoresizingMaskIntoConstraints = false
+        readingTimeLabel.font = .preferredFont(forTextStyle: .footnote)
+        readingTimeLabel.textColor = .secondaryLabel
+
+        readingTimeStackView.addArrangedSubviews([readingTimeIconImageView, readingTimeLabel])
+        readingTimeStackView.spacing = 4.0
+
+        contentStackView.addArrangedSubview(readingTimeStackView)
+        contentStackView.setCustomSpacing(8.0, after: readingTimeStackView)
     }
 
     func setupFeaturedImage() {
@@ -460,6 +491,7 @@ private extension ReaderPostCardCell {
         configureLabel(postTitleLabel, text: viewModel?.postTitle)
         configureLabel(postSummaryLabel, text: viewModel?.postSummary)
         configureLabel(postCountsLabel, text: viewModel?.postCounts)
+        configureLabel(readingTimeLabel, text: viewModel?.readingTimeString)
     }
 
     func configureLabel(_ label: UILabel, text: String?) {

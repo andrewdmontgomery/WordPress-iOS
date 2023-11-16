@@ -54,6 +54,13 @@ struct ReaderPostCardCellViewModel {
         contentProvider.contentPreviewForDisplay()
     }
 
+    var readingTimeString: String {
+        let readingTime = contentProvider.readingTime()?.intValue ?? 0
+
+        // TODO: Localize?
+        return "\(readingTime > 0 ? String(readingTime) : "<1") min read"
+    }
+
     var commentCount: String? {
         guard isCommentsEnabled,
               let count = contentProvider.commentCount()?.intValue,
