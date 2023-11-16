@@ -9,7 +9,7 @@ struct ContentView: View {
             case .marketing:
                 Text("Marketing view")
             case .photosPicker(let payload):
-                MediaUploadView(vm: PickerModel(payload: payload))
+                MediaUploadView(vm: MediaUploadViewModel(payload: payload))
             }
 
         }

@@ -136,7 +136,7 @@
 		011752B72B062E8500FFE4BF /* JetpackMediaAppClipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011752B62B062E8500FFE4BF /* JetpackMediaAppClipTests.swift */; };
 		011752C62B062E8600FFE4BF /* JetpackMediaAppClip.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = 011752A12B062E8000FFE4BF /* JetpackMediaAppClip.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		011752D82B0631FD00FFE4BF /* MediaUploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011752D72B0631FD00FFE4BF /* MediaUploadView.swift */; };
-		011752DA2B06320A00FFE4BF /* PickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011752D92B06320A00FFE4BF /* PickerModel.swift */; };
+		011752DA2B06320A00FFE4BF /* MediaUploadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011752D92B06320A00FFE4BF /* MediaUploadViewModel.swift */; };
 		011896A229D5AF0700D34BA9 /* BlogDashboardCardConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011896A129D5AF0700D34BA9 /* BlogDashboardCardConfigurable.swift */; };
 		011896A329D5AF0700D34BA9 /* BlogDashboardCardConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011896A129D5AF0700D34BA9 /* BlogDashboardCardConfigurable.swift */; };
 		011896A529D5B72500D34BA9 /* DomainsDashboardCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011896A429D5B72500D34BA9 /* DomainsDashboardCoordinator.swift */; };
@@ -2880,6 +2880,8 @@
 		C38C5D8127F61D2C002F517E /* MenuItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38C5D8027F61D2C002F517E /* MenuItemTests.swift */; };
 		C391B3962B065DDE00D0D5C9 /* AppClipState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C391B3952B065DDE00D0D5C9 /* AppClipState.swift */; };
 		C391B3982B065E4800D0D5C9 /* AppClipViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C391B3972B065E4800D0D5C9 /* AppClipViewModel.swift */; };
+		C391B39A2B0662AC00D0D5C9 /* DataPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = C391B3992B0662AC00D0D5C9 /* DataPayload.swift */; };
+		C391B39C2B0662CD00D0D5C9 /* MediaUploadViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C391B39B2B0662CD00D0D5C9 /* MediaUploadViewState.swift */; };
 		C395FB232821FE4400AE7C11 /* SiteDesignSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C395FB222821FE4400AE7C11 /* SiteDesignSection.swift */; };
 		C395FB242821FE4B00AE7C11 /* SiteDesignSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C395FB222821FE4400AE7C11 /* SiteDesignSection.swift */; };
 		C395FB262821FE7B00AE7C11 /* RemoteSiteDesign+Thumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C395FB252821FE7B00AE7C11 /* RemoteSiteDesign+Thumbnail.swift */; };
@@ -5910,7 +5912,7 @@
 		011752B22B062E8200FFE4BF /* JetpackMediaAppClipTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JetpackMediaAppClipTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		011752B62B062E8500FFE4BF /* JetpackMediaAppClipTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JetpackMediaAppClipTests.swift; sourceTree = "<group>"; };
 		011752D72B0631FD00FFE4BF /* MediaUploadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaUploadView.swift; sourceTree = "<group>"; };
-		011752D92B06320A00FFE4BF /* PickerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerModel.swift; sourceTree = "<group>"; };
+		011752D92B06320A00FFE4BF /* MediaUploadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaUploadViewModel.swift; sourceTree = "<group>"; };
 		011896A129D5AF0700D34BA9 /* BlogDashboardCardConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogDashboardCardConfigurable.swift; sourceTree = "<group>"; };
 		011896A429D5B72500D34BA9 /* DomainsDashboardCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainsDashboardCoordinator.swift; sourceTree = "<group>"; };
 		011896A729D5BBB400D34BA9 /* DomainsDashboardFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainsDashboardFactory.swift; sourceTree = "<group>"; };
@@ -8304,6 +8306,8 @@
 		C38C5D8027F61D2C002F517E /* MenuItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MenuItemTests.swift; path = Menus/MenuItemTests.swift; sourceTree = "<group>"; };
 		C391B3952B065DDE00D0D5C9 /* AppClipState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppClipState.swift; sourceTree = "<group>"; };
 		C391B3972B065E4800D0D5C9 /* AppClipViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppClipViewModel.swift; sourceTree = "<group>"; };
+		C391B3992B0662AC00D0D5C9 /* DataPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPayload.swift; sourceTree = "<group>"; };
+		C391B39B2B0662CD00D0D5C9 /* MediaUploadViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaUploadViewState.swift; sourceTree = "<group>"; };
 		C395FB222821FE4400AE7C11 /* SiteDesignSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteDesignSection.swift; sourceTree = "<group>"; };
 		C395FB252821FE7B00AE7C11 /* RemoteSiteDesign+Thumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RemoteSiteDesign+Thumbnail.swift"; sourceTree = "<group>"; };
 		C396C80A280F2401006FE7AC /* SiteDesignTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteDesignTests.swift; sourceTree = "<group>"; };
@@ -9900,7 +9904,9 @@
 				C391B3972B065E4800D0D5C9 /* AppClipViewModel.swift */,
 				C391B3952B065DDE00D0D5C9 /* AppClipState.swift */,
 				011752D72B0631FD00FFE4BF /* MediaUploadView.swift */,
-				011752D92B06320A00FFE4BF /* PickerModel.swift */,
+				011752D92B06320A00FFE4BF /* MediaUploadViewModel.swift */,
+				C391B39B2B0662CD00D0D5C9 /* MediaUploadViewState.swift */,
+				C391B3992B0662AC00D0D5C9 /* DataPayload.swift */,
 				011752A72B062E8200FFE4BF /* Assets.xcassets */,
 				011752AC2B062E8200FFE4BF /* Info.plist */,
 				011752AD2B062E8200FFE4BF /* JetpackMediaAppClip.entitlements */,
@@ -21247,8 +21253,10 @@
 				011752A62B062E8100FFE4BF /* ContentView.swift in Sources */,
 				011752D82B0631FD00FFE4BF /* MediaUploadView.swift in Sources */,
 				C391B3982B065E4800D0D5C9 /* AppClipViewModel.swift in Sources */,
+				C391B39A2B0662AC00D0D5C9 /* DataPayload.swift in Sources */,
 				011752A42B062E8100FFE4BF /* JetpackMediaAppClipApp.swift in Sources */,
-				011752DA2B06320A00FFE4BF /* PickerModel.swift in Sources */,
+				011752DA2B06320A00FFE4BF /* MediaUploadViewModel.swift in Sources */,
+				C391B39C2B0662CD00D0D5C9 /* MediaUploadViewState.swift in Sources */,
 				C391B3962B065DDE00D0D5C9 /* AppClipState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
