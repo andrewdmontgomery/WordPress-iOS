@@ -4,10 +4,19 @@ import PhotosUI
 @MainActor
 class MediaUploadViewModel: ObservableObject {
     @Published var viewState: MediaUploadViewState = .presented
+    @State var isMediaPickerPresented = true {
+        didSet {
+            if !isMediaPickerPresented && viewState == .presented {
+                completion()
+            }
+        }
+    }
+    private let completion: () -> ()
     private let payload: DataPayload
 
-    init(payload: DataPayload) {
+    init(payload: DataPayload, completion: @escaping () -> ()) {
         self.payload = payload
+        self.completion = completion
     }
 
     @Published var imageSelection: PhotosPickerItem? = nil {
@@ -35,6 +44,7 @@ class MediaUploadViewModel: ObservableObject {
                     }
                 case .success(nil):
                     viewState = .success
+                    completion()
                     print("Got empty value instead of expected image.")
                 case .failure(let error):
                     viewState = .failed

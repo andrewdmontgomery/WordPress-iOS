@@ -9,9 +9,10 @@ struct ContentView: View {
             case .marketing:
                 Text("Marketing view")
             case .photosPicker(let payload):
-                MediaUploadView(vm: MediaUploadViewModel(payload: payload))
+                MediaUploadView(vm: MediaUploadViewModel(payload: payload) {
+                    vm.appState = .marketing
+                })
             }
-
         }
         .onContinueUserActivity(NSUserActivityTypeBrowsingWeb, perform: { userActivity in
             // grab the payload from the URL that loaded the App Clip
