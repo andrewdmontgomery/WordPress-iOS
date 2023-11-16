@@ -179,13 +179,17 @@ static NSInteger const AverageWordsReadPerMinute = 238;
     post.isExternal = remotePost.isExternal;
     post.isJetpack = remotePost.isJetpack;
 
+    NSInteger wordCount = -1;
+
     if (remotePost.wordCount != nil && remotePost.wordCount > 0) {
-        post.wordCount = remotePost.wordCount;
-        post.readingTime = remotePost.readingTime;
+        wordCount = remotePost.wordCount.intValue;
     } else {
-        NSInteger contentWordCount = [remotePost.content componentsSeparatedByString:@" "].count;
-        post.wordCount = @(contentWordCount);
-        post.readingTime = @(contentWordCount / AverageWordsReadPerMinute);
+        wordCount = [remotePost.content componentsSeparatedByString:@" "].count;
+    }
+
+    if (wordCount > -1) {
+        post.wordCount = @(wordCount);
+        post.readingTime = @(wordCount / AverageWordsReadPerMinute);
     }
 
     if (remotePost.sourceAttribution) {

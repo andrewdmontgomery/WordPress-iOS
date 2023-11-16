@@ -589,7 +589,7 @@ private extension ReaderPostCardCell {
 
     func addMissingViews() {
         let siteHeaderViews = [avatarContainerView, siteIconContainerView, siteTitleLabel, postDateLabel]
-        let contentViews = [siteStackView, postTitleLabel, postSummaryLabel, featuredImageView, postCountsLabel]
+        let contentViews = [siteStackView, postTitleLabel, postSummaryLabel, readingTimeStackView, featuredImageView, postCountsLabel]
         let controlViews = [reblogButton, commentButton, likeButton].filter {
             // skip reblog button if a11y size is active.
             $0 != reblogButton || !self.usesAccessibilitySize
