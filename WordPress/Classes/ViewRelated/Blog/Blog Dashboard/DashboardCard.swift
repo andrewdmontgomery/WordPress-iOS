@@ -7,6 +7,7 @@ import Foundation
 ///
 /// Remote cards should be separately added to RemoteDashboardCard
 enum DashboardCard: String, CaseIterable {
+    case readingStats
     case jetpackInstall
     case quickStart
     case prompts
@@ -31,6 +32,8 @@ enum DashboardCard: String, CaseIterable {
 
     var cell: DashboardCollectionViewCell.Type {
         switch self {
+        case .readingStats:
+            return DashboardReadingStatsCell.self
         case .jetpackInstall:
             return DashboardJetpackInstallCardCell.self
         case .quickStart:
@@ -94,6 +97,8 @@ enum DashboardCard: String, CaseIterable {
 
     func shouldShow(for blog: Blog, apiResponse: BlogDashboardRemoteEntity? = nil) -> Bool {
         switch self {
+        case .readingStats:
+            return true
         case .jetpackInstall:
             return JetpackInstallPluginHelper.shouldShowCard(for: blog)
         case .quickStart:

@@ -90,6 +90,8 @@ private func makeKey(for action: DashboardQuickAction) -> String {
 
 private func makeKey(for card: DashboardCard) -> String? {
     switch card {
+    case .readingStats:
+        return "reading-stats-card-enabled-site-settings"
     case .todaysStats:
         return "todays-stats-card-enabled-site-settings"
     case .draftPosts:

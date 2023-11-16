@@ -69,6 +69,8 @@ final class BlogDashboardPersonalizationCardCellViewModel: ObservableObject, Ide
 private extension DashboardCard {
     func getLocalizedTitle() -> String {
         switch self {
+        case .readingStats:
+            return "Reading stats"
         case .prompts:
             return NSLocalizedString("personalizeHome.dashboardCard.prompts", value: "Blogging prompts", comment: "Card title for the pesonalization menu")
         case .blaze:
