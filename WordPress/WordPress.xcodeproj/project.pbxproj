@@ -129,6 +129,12 @@
 		0107E18A29000E1500DE87DB /* MurielColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4326191422FCB9DC003C7642 /* MurielColor.swift */; };
 		0107E18C29000E2A00DE87DB /* AppStyleGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD2544126116CEA00EDAF88 /* AppStyleGuide.swift */; };
 		0107E18F29000EA200DE87DB /* UIColor+MurielColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435B762122973D0600511813 /* UIColor+MurielColors.swift */; };
+		011752A42B062E8100FFE4BF /* JetpackMediaAppClipApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011752A32B062E8100FFE4BF /* JetpackMediaAppClipApp.swift */; };
+		011752A62B062E8100FFE4BF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011752A52B062E8100FFE4BF /* ContentView.swift */; };
+		011752A82B062E8200FFE4BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 011752A72B062E8200FFE4BF /* Assets.xcassets */; };
+		011752AB2B062E8200FFE4BF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 011752AA2B062E8200FFE4BF /* Preview Assets.xcassets */; };
+		011752B72B062E8500FFE4BF /* JetpackMediaAppClipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011752B62B062E8500FFE4BF /* JetpackMediaAppClipTests.swift */; };
+		011752C62B062E8600FFE4BF /* JetpackMediaAppClip.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = 011752A12B062E8000FFE4BF /* JetpackMediaAppClip.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		011896A229D5AF0700D34BA9 /* BlogDashboardCardConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011896A129D5AF0700D34BA9 /* BlogDashboardCardConfigurable.swift */; };
 		011896A329D5AF0700D34BA9 /* BlogDashboardCardConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011896A129D5AF0700D34BA9 /* BlogDashboardCardConfigurable.swift */; };
 		011896A529D5B72500D34BA9 /* DomainsDashboardCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011896A429D5B72500D34BA9 /* DomainsDashboardCoordinator.swift */; };
@@ -509,10 +515,10 @@
 		0CD9CCA42AD831590044A33C /* PostSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD9CCA22AD831590044A33C /* PostSearchViewModel.swift */; };
 		0CD9FB7E2AF9C4DB009D9C7A /* UIBarButtonItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD9FB7D2AF9C4DB009D9C7A /* UIBarButtonItem+Extensions.swift */; };
 		0CD9FB7F2AF9C4DB009D9C7A /* UIBarButtonItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD9FB7D2AF9C4DB009D9C7A /* UIBarButtonItem+Extensions.swift */; };
-		0CD9FB8B2AFADAFE009D9C7A /* SiteMediaPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD9FB8A2AFADAFE009D9C7A /* SiteMediaPageViewController.swift */; };
-		0CD9FB8C2AFADAFE009D9C7A /* SiteMediaPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD9FB8A2AFADAFE009D9C7A /* SiteMediaPageViewController.swift */; };
 		0CD9FB872AFA71B9009D9C7A /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = 0CD9FB862AFA71B9009D9C7A /* DGCharts */; };
 		0CD9FB892AFA71C2009D9C7A /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = 0CD9FB882AFA71C2009D9C7A /* DGCharts */; };
+		0CD9FB8B2AFADAFE009D9C7A /* SiteMediaPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD9FB8A2AFADAFE009D9C7A /* SiteMediaPageViewController.swift */; };
+		0CD9FB8C2AFADAFE009D9C7A /* SiteMediaPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD9FB8A2AFADAFE009D9C7A /* SiteMediaPageViewController.swift */; };
 		0CDEC40C2A2FAF0500BB3A91 /* DashboardBlazeCampaignsCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDEC40B2A2FAF0500BB3A91 /* DashboardBlazeCampaignsCardView.swift */; };
 		0CDEC40D2A2FAF0500BB3A91 /* DashboardBlazeCampaignsCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDEC40B2A2FAF0500BB3A91 /* DashboardBlazeCampaignsCardView.swift */; };
 		0CED95602A460F4B0020F420 /* DebugFeatureFlagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CED955F2A460F4B0020F420 /* DebugFeatureFlagsView.swift */; };
@@ -5710,6 +5716,20 @@
 			remoteGlobalIDString = 0107E13828FE9DB200DE87DB;
 			remoteInfo = JetpackIntents;
 		};
+		011752B32B062E8200FFE4BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 011752A02B062E8000FFE4BF;
+			remoteInfo = JetpackMediaAppClip;
+		};
+		011752C42B062E8600FFE4BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 011752A02B062E8000FFE4BF;
+			remoteInfo = JetpackMediaAppClip;
+		};
 		096A92FC26E2A0AE00448C68 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -5825,6 +5845,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		011752C72B062E8800FFE4BF /* Embed App Clips */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/AppClips";
+			dstSubfolderSpec = 16;
+			files = (
+				011752C62B062E8600FFE4BF /* JetpackMediaAppClip.app in Embed App Clips */,
+			);
+			name = "Embed App Clips";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		93E5284E19A7741A003A1A9C /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -5865,6 +5896,15 @@
 		0107E1832900043200DE87DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0107E1842900059300DE87DB /* LocalizationConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationConfiguration.swift; sourceTree = "<group>"; };
 		0107E1862900065400DE87DB /* LocalizationConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationConfiguration.swift; sourceTree = "<group>"; };
+		011752A12B062E8000FFE4BF /* JetpackMediaAppClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JetpackMediaAppClip.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		011752A32B062E8100FFE4BF /* JetpackMediaAppClipApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JetpackMediaAppClipApp.swift; sourceTree = "<group>"; };
+		011752A52B062E8100FFE4BF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		011752A72B062E8200FFE4BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		011752AA2B062E8200FFE4BF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		011752AC2B062E8200FFE4BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		011752AD2B062E8200FFE4BF /* JetpackMediaAppClip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JetpackMediaAppClip.entitlements; sourceTree = "<group>"; };
+		011752B22B062E8200FFE4BF /* JetpackMediaAppClipTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JetpackMediaAppClipTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		011752B62B062E8500FFE4BF /* JetpackMediaAppClipTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JetpackMediaAppClipTests.swift; sourceTree = "<group>"; };
 		011896A129D5AF0700D34BA9 /* BlogDashboardCardConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogDashboardCardConfigurable.swift; sourceTree = "<group>"; };
 		011896A429D5B72500D34BA9 /* DomainsDashboardCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainsDashboardCoordinator.swift; sourceTree = "<group>"; };
 		011896A729D5BBB400D34BA9 /* DomainsDashboardFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainsDashboardFactory.swift; sourceTree = "<group>"; };
@@ -9588,6 +9628,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0117529E2B062E8000FFE4BF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		011752AF2B062E8200FFE4BF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -9828,6 +9882,35 @@
 				0167F4B12AAA02BD005B9E42 /* Supporting Files */,
 			);
 			path = JetpackStatsWidgets;
+			sourceTree = "<group>";
+		};
+		011752A22B062E8100FFE4BF /* JetpackMediaAppClip */ = {
+			isa = PBXGroup;
+			children = (
+				011752A32B062E8100FFE4BF /* JetpackMediaAppClipApp.swift */,
+				011752A52B062E8100FFE4BF /* ContentView.swift */,
+				011752A72B062E8200FFE4BF /* Assets.xcassets */,
+				011752AC2B062E8200FFE4BF /* Info.plist */,
+				011752AD2B062E8200FFE4BF /* JetpackMediaAppClip.entitlements */,
+				011752A92B062E8200FFE4BF /* Preview Content */,
+			);
+			path = JetpackMediaAppClip;
+			sourceTree = "<group>";
+		};
+		011752A92B062E8200FFE4BF /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				011752AA2B062E8200FFE4BF /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		011752B52B062E8500FFE4BF /* JetpackMediaAppClipTests */ = {
+			isa = PBXGroup;
+			children = (
+				011752B62B062E8500FFE4BF /* JetpackMediaAppClipTests.swift */,
+			);
+			path = JetpackMediaAppClipTests;
 			sourceTree = "<group>";
 		};
 		0118968D29D1EAC900D34BA9 /* Domains */ = {
@@ -10743,6 +10826,8 @@
 				0107E0EA28F97D5000DE87DB /* JetpackStatsWidgets.appex */,
 				0107E15428FE9DB200DE87DB /* JetpackIntents.appex */,
 				EA14534229AD874C001F3143 /* JetpackUITests.xctest */,
+				011752A12B062E8000FFE4BF /* JetpackMediaAppClip.app */,
+				011752B22B062E8200FFE4BF /* JetpackMediaAppClipTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -10810,6 +10895,8 @@
 				8511CFB71C607A7000B7CEED /* WordPressScreenshotGeneration */,
 				FAF64BC82637DF0600E8A1DF /* JetpackScreenshotGeneration */,
 				3FA640582670CCD40064401E /* UITestsFoundation */,
+				011752A22B062E8100FFE4BF /* JetpackMediaAppClip */,
+				011752B52B062E8500FFE4BF /* JetpackMediaAppClipTests */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				93FA0F0118E451A80007903B /* LICENSE */,
@@ -18659,6 +18746,41 @@
 			productReference = 0107E15428FE9DB200DE87DB /* JetpackIntents.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		011752A02B062E8000FFE4BF /* JetpackMediaAppClip */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 011752D42B062E8800FFE4BF /* Build configuration list for PBXNativeTarget "JetpackMediaAppClip" */;
+			buildPhases = (
+				0117529D2B062E8000FFE4BF /* Sources */,
+				0117529E2B062E8000FFE4BF /* Frameworks */,
+				0117529F2B062E8000FFE4BF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JetpackMediaAppClip;
+			productName = JetpackMediaAppClip;
+			productReference = 011752A12B062E8000FFE4BF /* JetpackMediaAppClip.app */;
+			productType = "com.apple.product-type.application.on-demand-install-capable";
+		};
+		011752B12B062E8200FFE4BF /* JetpackMediaAppClipTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 011752D52B062E8800FFE4BF /* Build configuration list for PBXNativeTarget "JetpackMediaAppClipTests" */;
+			buildPhases = (
+				011752AE2B062E8200FFE4BF /* Sources */,
+				011752AF2B062E8200FFE4BF /* Frameworks */,
+				011752B02B062E8200FFE4BF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				011752B42B062E8200FFE4BF /* PBXTargetDependency */,
+			);
+			name = JetpackMediaAppClipTests;
+			productName = JetpackMediaAppClipTests;
+			productReference = 011752B22B062E8200FFE4BF /* JetpackMediaAppClipTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		1D6058900D05DD3D006BFB54 /* WordPress */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "WordPress" */;
@@ -18930,6 +19052,7 @@
 				FABB264A2602FC2C00C8785C /* [CP] Embed Pods Frameworks */,
 				FABB264B2602FC2C00C8785C /* [CP] Copy Pods Resources */,
 				FABB264C2602FC2C00C8785C /* Copy Gutenberg JS */,
+				011752C72B062E8800FFE4BF /* Embed App Clips */,
 			);
 			buildRules = (
 			);
@@ -18940,6 +19063,7 @@
 				8096212728E5411400940A5D /* PBXTargetDependency */,
 				8096219028E55F8600940A5D /* PBXTargetDependency */,
 				80F6D05F28EE88FC00953C1A /* PBXTargetDependency */,
+				011752C52B062E8600FFE4BF /* PBXTargetDependency */,
 			);
 			name = Jetpack;
 			packageProductDependencies = (
@@ -18999,10 +19123,17 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1220;
+				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1400;
 				ORGANIZATIONNAME = WordPress;
 				TargetAttributes = {
+					011752A02B062E8000FFE4BF = {
+						CreatedOnToolsVersion = 15.0.1;
+					};
+					011752B12B062E8200FFE4BF = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = 011752A02B062E8000FFE4BF;
+					};
 					096A92F526E29FFF00448C68 = {
 						CreatedOnToolsVersion = 12.5;
 					};
@@ -19192,6 +19323,8 @@
 				0107E13828FE9DB200DE87DB /* JetpackIntents */,
 				EA14532229AD874C001F3143 /* JetpackUITests */,
 				3F47AC482A7206BE00208F0D /* ConfigureSimulatorForUITesting */,
+				011752A02B062E8000FFE4BF /* JetpackMediaAppClip */,
+				011752B12B062E8200FFE4BF /* JetpackMediaAppClipTests */,
 			);
 		};
 /* End PBXProject section */
@@ -19211,6 +19344,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				0107E14D28FE9DB200DE87DB /* AppImages.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0117529F2B062E8000FFE4BF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				011752AB2B062E8200FFE4BF /* Preview Assets.xcassets in Resources */,
+				011752A82B062E8200FFE4BF /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		011752B02B062E8200FFE4BF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21076,6 +21225,23 @@
 				0107E14728FE9DB200DE87DB /* Constants.m in Sources */,
 				0107E14828FE9DB200DE87DB /* SFHFKeychainUtils.m in Sources */,
 				0107E14928FE9DB200DE87DB /* IntentHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0117529D2B062E8000FFE4BF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				011752A62B062E8100FFE4BF /* ContentView.swift in Sources */,
+				011752A42B062E8100FFE4BF /* JetpackMediaAppClipApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		011752AE2B062E8200FFE4BF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				011752B72B062E8500FFE4BF /* JetpackMediaAppClipTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25867,6 +26033,16 @@
 			target = 0107E13828FE9DB200DE87DB /* JetpackIntents */;
 			targetProxy = 0107E15628FEA03800DE87DB /* PBXContainerItemProxy */;
 		};
+		011752B42B062E8200FFE4BF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 011752A02B062E8000FFE4BF /* JetpackMediaAppClip */;
+			targetProxy = 011752B32B062E8200FFE4BF /* PBXContainerItemProxy */;
+		};
+		011752C52B062E8600FFE4BF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 011752A02B062E8000FFE4BF /* JetpackMediaAppClip */;
+			targetProxy = 011752C42B062E8600FFE4BF /* PBXContainerItemProxy */;
+		};
 		096A92FD26E2A0AE00448C68 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 096A92F526E29FFF00448C68 /* GenerateCredentials */;
@@ -26544,6 +26720,396 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WPCOM_SCHEME = jpalpha;
+			};
+			name = "Release-Alpha";
+		};
+		011752C82B062E8800FFE4BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = JetpackMediaAppClip/JetpackMediaAppClip.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = "${VERSION_LONG}";
+				DEVELOPMENT_ASSET_PATHS = "\"JetpackMediaAppClip/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = PZYM8XX95Q;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = JetpackMediaAppClip/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Jetpack;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = "${VERSION_SHORT}";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.automattic.jetpack.JetpackMediaAppClip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Jetpack iOS Development Media App Clip";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		011752C92B062E8800FFE4BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = JetpackMediaAppClip/JetpackMediaAppClip.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Distribution: Automattic, Inc. (PZYM8XX95Q)";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = "${VERSION_LONG}";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_ASSET_PATHS = "\"JetpackMediaAppClip/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = JetpackMediaAppClip/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Jetpack;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = "${VERSION_SHORT}";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.automattic.jetpack.JetpackMediaAppClip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		011752CA2B062E8800FFE4BF /* Release-Internal */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = JetpackMediaAppClip/JetpackMediaAppClip.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Automattic, Inc.";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = "${VERSION_LONG}";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_ASSET_PATHS = "\"JetpackMediaAppClip/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = JetpackMediaAppClip/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Jetpack;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = "${VERSION_SHORT}";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.automattic.jetpack.JetpackMediaAppClip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Release-Internal";
+		};
+		011752CB2B062E8800FFE4BF /* Release-Alpha */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = JetpackMediaAppClip/JetpackMediaAppClip.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Automattic, Inc.";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = "${VERSION_LONG}";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_ASSET_PATHS = "\"JetpackMediaAppClip/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = JetpackMediaAppClip/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Jetpack;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = "${VERSION_SHORT}";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.automattic.jetpack.JetpackMediaAppClip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Release-Alpha";
+		};
+		011752CC2B062E8800FFE4BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.automattic.jetpack.JetpackMediaAppClipTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JetpackMediaAppClip.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/JetpackMediaAppClip";
+			};
+			name = Debug;
+		};
+		011752CD2B062E8800FFE4BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.automattic.jetpack.JetpackMediaAppClipTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JetpackMediaAppClip.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/JetpackMediaAppClip";
+			};
+			name = Release;
+		};
+		011752CE2B062E8800FFE4BF /* Release-Internal */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.automattic.jetpack.JetpackMediaAppClipTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JetpackMediaAppClip.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/JetpackMediaAppClip";
+			};
+			name = "Release-Internal";
+		};
+		011752CF2B062E8800FFE4BF /* Release-Alpha */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.automattic.jetpack.JetpackMediaAppClipTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JetpackMediaAppClip.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/JetpackMediaAppClip";
 			};
 			name = "Release-Alpha";
 		};
@@ -30130,6 +30696,28 @@
 				0107E15128FE9DB200DE87DB /* Release */,
 				0107E15228FE9DB200DE87DB /* Release-Internal */,
 				0107E15328FE9DB200DE87DB /* Release-Alpha */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		011752D42B062E8800FFE4BF /* Build configuration list for PBXNativeTarget "JetpackMediaAppClip" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				011752C82B062E8800FFE4BF /* Debug */,
+				011752C92B062E8800FFE4BF /* Release */,
+				011752CA2B062E8800FFE4BF /* Release-Internal */,
+				011752CB2B062E8800FFE4BF /* Release-Alpha */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		011752D52B062E8800FFE4BF /* Build configuration list for PBXNativeTarget "JetpackMediaAppClipTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				011752CC2B062E8800FFE4BF /* Debug */,
+				011752CD2B062E8800FFE4BF /* Release */,
+				011752CE2B062E8800FFE4BF /* Release-Internal */,
+				011752CF2B062E8800FFE4BF /* Release-Alpha */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
