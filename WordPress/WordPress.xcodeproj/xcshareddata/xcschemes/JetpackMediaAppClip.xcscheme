@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   LastUpgradeVersion = "1500"
+   version = "1.7">
+   <BuildAction
+      parallelizeBuildables = "YES"
+      buildImplicitDependencies = "YES">
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "011752A02B062E8000FFE4BF"
+               BuildableName = "JetpackMediaAppClip.app"
+               BlueprintName = "JetpackMediaAppClip"
+               ReferencedContainer = "container:WordPress.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <TestAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      shouldAutocreateTestPlan = "YES">
+      <Testables>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "011752B12B062E8200FFE4BF"
+               BuildableName = "JetpackMediaAppClipTests.xctest"
+               BlueprintName = "JetpackMediaAppClipTests"
+               ReferencedContainer = "container:WordPress.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+      </Testables>
+   </TestAction>
+   <LaunchAction
+      buildConfiguration = "Debug"
+      appClipInvocationURLString = "http://appclip.example.com?data=eyJ1c2VyIjoibWVkaWFibG9jayIsInBhc3MiOiJ0MnhMIHp1ajIgZ1hZRyBIRXZzIFVVd0sgMkg1bCIsIndwSG9zdCI6Imh0dHBzOi8vb25seS1waW50YWlsLmp1cmFzc2ljLm5pbmphIn0="
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      launchStyle = "0"
+      useCustomWorkingDirectory = "NO"
+      ignoresPersistentStateOnLaunch = "NO"
+      debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
+      allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "011752A02B062E8000FFE4BF"
+            BuildableName = "JetpackMediaAppClip.app"
+            BlueprintName = "JetpackMediaAppClip"
+            ReferencedContainer = "container:WordPress.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+   </LaunchAction>
+   <ProfileAction
+      buildConfiguration = "Release"
+      appClipInvocationURLString = "http://appclip.example.com?data=eyJ1c2VyIjoibWVkaWFibG9jayIsInBhc3MiOiJ0MnhMIHp1ajIgZ1hZRyBIRXZzIFVVd0sgMkg1bCIsIndwSG9zdCI6Imh0dHBzOi8vb25seS1waW50YWlsLmp1cmFzc2ljLm5pbmphIn0="
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      savedToolIdentifier = ""
+      useCustomWorkingDirectory = "NO"
+      debugDocumentVersioning = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "011752A02B062E8000FFE4BF"
+            BuildableName = "JetpackMediaAppClip.app"
+            BlueprintName = "JetpackMediaAppClip"
+            ReferencedContainer = "container:WordPress.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+   </ProfileAction>
+   <AnalyzeAction
+      buildConfiguration = "Debug">
+   </AnalyzeAction>
+   <ArchiveAction
+      buildConfiguration = "Release"
+      revealArchiveInOrganizer = "YES">
+   </ArchiveAction>
+</Scheme>

@@ -1,11 +1,11 @@
 import SwiftUI
 import PhotosUI
 
-struct MediaPicker: View {
+struct MediaUploadView: View {
     @ObservedObject var vm: PickerModel
     @State var isPresented = true
 
     var body: some View {
-        Text("Marketing view here")
+        Text("Media Picker")
     }
 }
