@@ -7,14 +7,14 @@ class MediaUploadViewModel: ObservableObject {
     @Published var isMediaPickerPresented = true {
         didSet {
             if !isMediaPickerPresented && viewState == .presented {
-                completion()
+                completion(false)
             }
         }
     }
-    private let completion: () -> ()
+    private let completion: (Bool) -> ()
     private let payload: DataPayload
 
-    init(payload: DataPayload, completion: @escaping () -> ()) {
+    init(payload: DataPayload, completion: @escaping (Bool) -> ()) {
         self.payload = payload
         self.completion = completion
     }
@@ -68,7 +68,7 @@ class MediaUploadViewModel: ObservableObject {
         do {
             let (_, _) = try await URLSession.shared.upload(for: req, from: photoData)
             viewState = .success
-            completion()
+            completion(true)
         } catch {
             viewState = .failed
         }

@@ -11,8 +11,12 @@ struct ContentView: View {
             case .marketing:
                 Text("Marketing view")
             case .photosPicker(let payload):
-                MediaUploadView(vm: MediaUploadViewModel(payload: payload) {
-                    withAnimation(.easeInOut(duration: 1).delay(5)) {
+                MediaUploadView(vm: MediaUploadViewModel(payload: payload) { success in
+                    if success {
+                        withAnimation(.easeInOut(duration: 1).delay(5)) {
+                            vm.appState = .marketing
+                        }
+                    } else {
                         vm.appState = .marketing
                     }
                 })
