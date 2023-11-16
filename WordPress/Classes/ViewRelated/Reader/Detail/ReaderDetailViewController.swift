@@ -216,7 +216,9 @@ class ReaderDetailViewController: UIViewController, ReaderDetailView {
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        ReaderTracker.shared.stop(.readerPost)
+        guard let post else { return }
+        let scrollPercent = scrollView.contentOffset.y / scrollView.contentSize.height
+        ReaderTracker.shared.stop(.readerPost, post, scrollPercent)
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

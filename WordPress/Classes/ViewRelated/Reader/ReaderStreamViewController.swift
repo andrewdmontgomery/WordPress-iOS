@@ -1674,12 +1674,17 @@ extension ReaderStreamViewController: WPTableViewHandlerDelegate {
         }
 
         if RemoteFeatureFlag.readerImprovements.enabled() {
+            let readPosts = UserDefaults.standard.value(forKey: "read_posts") as? [Int] ?? []
             let cell = tableConfiguration.postCardCell(tableView)
             let viewModel = ReaderPostCardCellViewModel(contentProvider: post,
                                                         isLoggedIn: isLoggedIn,
                                                         showsSeparator: showsSeparator,
                                                         parentViewController: self)
             cell.configure(with: viewModel)
+
+            if contentType == .saved, let postID = post.postID?.intValue, readPosts.contains(postID) {
+                cell.contentView.layer.opacity = 0.5
+            }
             return cell
         }
 

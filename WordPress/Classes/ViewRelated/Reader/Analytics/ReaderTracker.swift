@@ -3,6 +3,15 @@ import Foundation
 class ReaderTracker: NSObject {
     @objc static let shared = ReaderTracker()
 
+    var readPosts: [Int] {
+        get {
+            UserDefaults.standard.value(forKey: "read_posts") as? [Int] ?? []
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: "read_posts")
+        }
+    }
+
     enum Section: String, CaseIterable {
         /// Time spent in the main Reader view (the one with the tabs)
         case main = "time_in_main_reader"
@@ -41,7 +50,7 @@ class ReaderTracker: NSObject {
     }
 
     /// Stop counting time spent for a given section
-    func stop(_ section: Section) {
+    func stop(_ section: Section, _ post: ReaderPost? = nil, _ scrollPercent: CGFloat? = nil) {
         guard let startTime = startTime[section] else {
             return
         }
@@ -50,6 +59,19 @@ class ReaderTracker: NSObject {
 
         totalTimeInSeconds[section] = (totalTimeInSeconds[section] ?? 0) + round(timeSince)
         self.startTime.removeValue(forKey: section)
+
+        if let post, post.isSavedForLater, let scrollPercent, let timeSpent = totalTimeInSeconds[section] {
+            let readingTimeInSeconds = post.readingTime.doubleValue * 60.0
+            let timePercent = readingTimeInSeconds > 0 ? timeSpent / readingTimeInSeconds : 1.0
+
+            if timePercent > 0.5 && scrollPercent > 0.5,
+                let postID = post.postID?.intValue,
+               !readPosts.contains(postID) {
+                var currentPosts = readPosts
+                currentPosts.append(postID)
+                readPosts = currentPosts
+            }
+        }
     }
 
     /// Stop counting time for all sections
