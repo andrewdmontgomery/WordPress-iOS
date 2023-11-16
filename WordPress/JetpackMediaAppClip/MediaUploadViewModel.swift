@@ -21,41 +21,45 @@ class MediaUploadViewModel: ObservableObject {
 
     @Published var imageSelection: PhotosPickerItem? = nil {
         didSet {
-            guard let image = imageSelection else {
-                print("No image selected.")
-                return
-            }
+            uploadPhotos()
+        }
+    }
 
-            viewState = .uploading
+    func uploadPhotos() {
+        guard let image = imageSelection else {
+            print("No image selected.")
+            return
+        }
 
-            image.loadTransferable(type: Image.self) { [weak self] result in
-                guard let self else { return }
+        viewState = .uploading
 
-                switch result {
-                case .success(let image?):
-                    DispatchQueue.main.async {
-                        let renderer = ImageRenderer(content: image)
-                        let uiImage = renderer.uiImage
-                        guard let data = uiImage?.jpegData(compressionQuality: 80) else {
-                            print("Failed to get JPEG data.")
-                            return
-                        }
-                        Task {
-                            await self.uploadPhoto(photoData: data)
-                        }
+        image.loadTransferable(type: Image.self) { [weak self] result in
+            guard let self else { return }
+
+            switch result {
+            case .success(let image?):
+                DispatchQueue.main.async {
+                    let renderer = ImageRenderer(content: image)
+                    let uiImage = renderer.uiImage
+                    guard let data = uiImage?.jpegData(compressionQuality: 80) else {
+                        print("Failed to get JPEG data.")
+                        return
                     }
-                case .success(nil):
-                    viewState = .failed
-                    print("Got empty value instead of expected image.")
-                case .failure(let error):
-                    viewState = .failed
-                    print("Error loading image: \(error)")
+                    Task {
+                        await self.uploadPhoto(photoData: data)
+                    }
                 }
+            case .success(nil):
+                viewState = .failed
+                print("Got empty value instead of expected image.")
+            case .failure(let error):
+                viewState = .failed
+                print("Error loading image: \(error)")
             }
         }
     }
 
-    func uploadPhoto(photoData: Data) async {
+    private func uploadPhoto(photoData: Data) async {
         guard let req = payload.createUploadRequest() else {
             print("Failed to create upload request")
             return

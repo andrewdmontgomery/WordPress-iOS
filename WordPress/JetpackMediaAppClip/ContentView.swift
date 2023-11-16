@@ -1,7 +1,9 @@
 import SwiftUI
+import StoreKit
 
 struct ContentView: View {
     @StateObject var vm = AppClipViewModel()
+    @State private var showRecommended = true
 
     var body: some View {
         VStack {
@@ -10,7 +12,9 @@ struct ContentView: View {
                 Text("Marketing view")
             case .photosPicker(let payload):
                 MediaUploadView(vm: MediaUploadViewModel(payload: payload) {
-                    vm.appState = .marketing
+                    withAnimation(.easeInOut(duration: 1).delay(5)) {
+                        vm.appState = .marketing
+                    }
                 })
             }
         }
