@@ -1,3 +1,5 @@
+import UIKit
+import SwiftUI
 
 final class DashboardReadingStatsViewModel {
     private enum Constants {
@@ -29,7 +31,6 @@ final class DashboardReadingStatsViewModel {
     }
 }
 
-import SwiftUI
 
 struct ShareSheet: UIViewControllerRepresentable {
     var activityItems: [Any]
@@ -55,11 +56,56 @@ struct DashboardReadingStatsCardView: View {
     }
 
     var body: some View {
-        VStack(spacing: Length.Padding.double) {
-            readingThisWeekStack
-            mostReadBlogsStack
+        VStack(spacing: 20) {
+            Image("icon-reader-save-outline")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 30, height: 30)
+                .foregroundColor(.white)
+                .background(Circle().fill(.black))
+                .frame(width: 190, height: 190) // Adjust size as needed
+            Text("47mins")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+            Text("Reading time this week")
+                .font(.body)
+                .foregroundColor(.secondary)
+                .fontWeight(.bold)
+            Text("You're in the top 10% of readers!")
+                .font(.caption)
+                .fontWeight(.semibold)
+                .foregroundColor(.secondary)
+            Text("MOST READ THIS WEEK")
+                .font(.caption)
+                .fontWeight(.semibold)
+                .foregroundColor(.secondary)
+            HStack {
+                ForEach(0..<3) { _ in // Replace with actual data
+                     VStack {
+                         Image("gravatar") // Replace with actual image
+                             .resizable()
+                             .scaledToFit()
+                             .clipShape(Circle())
+                             .overlay(Circle().stroke(Color.white, lineWidth: 3))
+                             .shadow(radius: 3)
+                             .frame(width: 60, height: 60) // Adjust size as needed
+                        Text("Culinary Wunderlust") // Replace with actual data
+                             .font(.headline)
+                             .multilineTextAlignment(.center)
+                     }
+                 }
+            }
+            Button(action: {
+                buttonAction()
+            }) {
+                HStack {
+                    Text("Share with friends")
+                        .fontWeight(.semibold)
+                        .foregroundColor(.green)
+                }.padding(.vertical)
+            }
         }
-        .padding([.leading, .trailing, .bottom], Length.Padding.double)
+        .padding([.leading, .trailing, .bottom], 20)
         .onAppear {
             //WPAnalytics.track(.domainTransferShown)
         }
@@ -71,79 +117,8 @@ struct DashboardReadingStatsCardView: View {
             }
         })
     }
-
-    private var readingThisWeekStack: some View {
-        VStack(alignment: .leading, spacing: 5) {
-            HStack(alignment: .firstTextBaseline, spacing: 10) {
-                Text("47mins")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                Text("Reading this week")
-                    .font(.body)
-                    .foregroundColor(.secondary)
-                Spacer()
-            }
-            HStack {
-                Text("Top 10%")
-                    .font(.caption)
-                    .fontWeight(.semibold)
-                    .foregroundColor(.green)
-                Image("icon-reader-star-outline")
-                    .renderingMode(.template)
-                    .foregroundColor(.green)
-                Spacer()
-            }
-        }
-    }
-
-    private var mostReadBlogsStack: some View {
-        VStack(spacing: 10) {
-            HStack {
-                Text("YOUR MOST READ BLOGS")
-                    .font(.caption)
-                    .fontWeight(.semibold)
-                    .foregroundColor(.secondary)
-                Spacer()
-            }
-
-            ForEach(0..<3) { _ in
-                HStack {
-                    Image("icon-tab-me") // Replace with actual image
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 44, height: 44) // Adjust size as needed
-                        .clipShape(Circle())
-                    VStack(alignment: .leading) {
-                        Text("Culinary Wanderlust")
-                            .font(.headline)
-                        Text("culinarywanderlust.wordpress.com")
-                            .font(.subheadline)
-                            .foregroundColor(.gray)
-                    }
-                    Spacer()
-                }
-            }
-            Spacer()
-
-            Button(action: {
-                buttonAction()
-            }) {
-                HStack {
-                    Text("Share with friends")
-                        .fontWeight(.semibold)
-                        .foregroundColor(.green)
-                }.padding(.vertical)
-            }
-        }
-    }
 }
 
-
-
-
-
-import UIKit
-import SwiftUI
 
 
 final class DashboardReadingStatsCell: DashboardCollectionViewCell {

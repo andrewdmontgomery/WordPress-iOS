@@ -12,6 +12,15 @@ class ReaderTracker: NSObject {
         }
     }
 
+    var timeSpentReading: TimeInterval {
+        get {
+            UserDefaults.standard.value(forKey: "time_spent_reading") as? TimeInterval ?? 0
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: "time_spent_reading")
+        }
+    }
+
     enum Section: String, CaseIterable {
         /// Time spent in the main Reader view (the one with the tabs)
         case main = "time_in_main_reader"
@@ -70,6 +79,7 @@ class ReaderTracker: NSObject {
                 var currentPosts = readPosts
                 currentPosts.append(postID)
                 readPosts = currentPosts
+                timeSpentReading += timeSpent
             }
         }
     }
