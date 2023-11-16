@@ -46,15 +46,7 @@ struct ShareSheet: UIViewControllerRepresentable {
     }
 }
 
-struct DashboardReadingStatsCardView: View {
-    var buttonAction: () -> ()
-    @State private var capturedImage: UIImage?
-    @State private var isShareSheetPresented = false
-
-    init(buttonAction: @escaping () -> ()) {
-        self.buttonAction = buttonAction
-    }
-
+struct ReadingStatsView: View {
     var body: some View {
         VStack(spacing: 20) {
             Image("icon-reader-save-outline")
@@ -63,7 +55,6 @@ struct DashboardReadingStatsCardView: View {
                 .frame(width: 30, height: 30)
                 .foregroundColor(.white)
                 .background(Circle().fill(.black))
-                .frame(width: 190, height: 190) // Adjust size as needed
             Text("47mins")
                 .font(.largeTitle)
                 .fontWeight(.bold)
@@ -95,6 +86,22 @@ struct DashboardReadingStatsCardView: View {
                      }
                  }
             }
+        }
+    }
+}
+
+struct DashboardReadingStatsCardView: View {
+    var buttonAction: () -> ()
+    @State private var capturedImage: UIImage?
+    @State private var isShareSheetPresented = false
+
+    init(buttonAction: @escaping () -> ()) {
+        self.buttonAction = buttonAction
+    }
+
+    var body: some View {
+        VStack(spacing: 20) {
+            ReadingStatsView()
             Button(action: {
                 buttonAction()
             }) {
@@ -201,13 +208,31 @@ final class DashboardReadingStatsCell: DashboardCollectionViewCell {
         )
     }
 
-    func takeScreenshot() -> UIImage? {
-        guard let hostingView = frameView.subviews.first else { return nil }
-        let renderer = UIGraphicsImageRenderer(size: hostingView.bounds.size)
-        let image = renderer.image { ctx in
-            hostingView.drawHierarchy(in: hostingView.bounds, afterScreenUpdates: true)
+    private var viewForScreenshot: some View {
+        VStack(spacing: 0) {
+            ReadingStatsView()
+                .padding([.top, .bottom], 10.0)
+                .padding([.leading, .trailing], 20.0)
+            Spacer()
         }
-        return image
+    }
+
+    func takeScreenshot() -> UIImage? {
+        let fauxHostingController = UIHostingController(rootView: viewForScreenshot)
+
+        guard let viewToDraw = fauxHostingController.view,
+              let hostedView = frameView.subviews.first else {
+            return nil
+        }
+
+        let targetSize = hostedView.bounds.size
+        viewToDraw.bounds = .init(origin: .zero, size: targetSize)
+        viewToDraw.backgroundColor = .clear
+
+        let renderer = UIGraphicsImageRenderer(size: targetSize)
+        return renderer.image { _ in
+            viewToDraw.drawHierarchy(in: hostedView.bounds, afterScreenUpdates: true)
+        }
     }
 }
 
