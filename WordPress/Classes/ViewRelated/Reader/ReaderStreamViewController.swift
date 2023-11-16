@@ -1681,6 +1681,7 @@ extension ReaderStreamViewController: WPTableViewHandlerDelegate {
                                                         showsSeparator: showsSeparator,
                                                         parentViewController: self)
             cell.configure(with: viewModel)
+            cell.contentView.layer.opacity = 1.0
 
             if contentType == .saved, let postID = post.postID?.intValue, readPosts.contains(postID) {
                 cell.contentView.layer.opacity = 0.5
