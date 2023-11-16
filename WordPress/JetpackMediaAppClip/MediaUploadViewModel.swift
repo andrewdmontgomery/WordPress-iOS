@@ -4,7 +4,7 @@ import PhotosUI
 @MainActor
 class MediaUploadViewModel: ObservableObject {
     @Published var viewState: MediaUploadViewState = .presented
-    @State var isMediaPickerPresented = true {
+    @Published var isMediaPickerPresented = true {
         didSet {
             if !isMediaPickerPresented && viewState == .presented {
                 completion()
@@ -40,11 +40,12 @@ class MediaUploadViewModel: ObservableObject {
                             print("Failed to get JPEG data.")
                             return
                         }
-                        self.uploadPhoto(photoData: data)
+                        Task {
+                            await self.uploadPhoto(photoData: data)
+                        }
                     }
                 case .success(nil):
-                    viewState = .success
-                    completion()
+                    viewState = .failed
                     print("Got empty value instead of expected image.")
                 case .failure(let error):
                     viewState = .failed
@@ -54,12 +55,18 @@ class MediaUploadViewModel: ObservableObject {
         }
     }
 
-    func uploadPhoto(photoData: Data) {
+    func uploadPhoto(photoData: Data) async {
         guard let req = payload.createUploadRequest() else {
             print("Failed to create upload request")
             return
         }
 
-        URLSession.shared.uploadTask(with: req, from: photoData).resume()
+        do {
+            let (_, _) = try await URLSession.shared.upload(for: req, from: photoData)
+            viewState = .success
+            completion()
+        } catch {
+            viewState = .failed
+        }
     }
 }
