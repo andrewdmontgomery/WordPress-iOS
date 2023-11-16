@@ -48,43 +48,54 @@ struct ShareSheet: UIViewControllerRepresentable {
 
 struct ReadingStatsView: View {
     var body: some View {
-        VStack(spacing: 20) {
+        VStack(spacing: 24.0) {
+            heroView
+            favoriteBlogsView
+        }
+        .padding(.horizontal, 32.0)
+    }
+
+    var heroView: some View {
+        VStack(spacing: 8.0) {
             Image("icon-reader-save-outline")
                 .resizable()
                 .scaledToFit()
-                .frame(width: 30, height: 30)
+                .frame(width: 24.0, height: 24.0)
+                .padding(4.0)
                 .foregroundColor(.white)
                 .background(Circle().fill(.black))
-            Text("47mins")
-                .font(.largeTitle)
+            Text("47 mins")
+                .font(.title)
                 .fontWeight(.bold)
             Text("Reading time this week")
-                .font(.body)
-                .foregroundColor(.secondary)
-                .fontWeight(.bold)
+                .font(.subheadline)
+                .fontWeight(.semibold)
+            // TODO: Add trend-up icon.
             Text("You're in the top 10% of readers!")
-                .font(.caption)
-                .fontWeight(.semibold)
+                .font(.footnote)
                 .foregroundColor(.secondary)
-            Text("MOST READ THIS WEEK")
+        }
+    }
+
+    var favoriteBlogsView: some View {
+        VStack(spacing: 8.0) {
+            Text("YOUR FAVORITE BLOGS")
                 .font(.caption)
-                .fontWeight(.semibold)
                 .foregroundColor(.secondary)
-            HStack {
+            HStack(alignment: .top) {
                 ForEach(0..<3) { _ in // Replace with actual data
-                     VStack {
-                         Image("gravatar") // Replace with actual image
-                             .resizable()
-                             .scaledToFit()
-                             .clipShape(Circle())
-                             .overlay(Circle().stroke(Color.white, lineWidth: 3))
-                             .shadow(radius: 3)
-                             .frame(width: 60, height: 60) // Adjust size as needed
+                    VStack {
+                        Image("gravatar") // Replace with actual image
+                            .resizable()
+                            .scaledToFit()
+                            .clipShape(Circle())
+                            .frame(width: 64.0, height: 64.0) // Adjust size as needed
                         Text("Culinary Wunderlust") // Replace with actual data
-                             .font(.headline)
-                             .multilineTextAlignment(.center)
-                     }
-                 }
+                            .font(.footnote)
+                            .multilineTextAlignment(.center)
+                    }
+                    .frame(minWidth: 0, maxWidth: .infinity) // keeps the elements equally-sized within the HStack.
+                }
             }
         }
     }
@@ -100,22 +111,18 @@ struct DashboardReadingStatsCardView: View {
     }
 
     var body: some View {
-        VStack(spacing: 20) {
+        VStack(spacing: 16.0) {
             ReadingStatsView()
             Button(action: {
                 buttonAction()
             }) {
-                HStack {
-                    Text("Share with friends")
-                        .fontWeight(.semibold)
-                        .foregroundColor(.green)
-                }.padding(.vertical)
+                Text("Share with friends")
+                    .font(.body)
+                    .foregroundStyle(Color(uiColor: .jetpackGreen))
+                    .padding(.vertical, 8.0)
             }
         }
-        .padding([.leading, .trailing, .bottom], 20)
-        .onAppear {
-            //WPAnalytics.track(.domainTransferShown)
-        }
+        .padding(.bottom, 24.0)
         .sheet(isPresented: $isShareSheetPresented, onDismiss: {
             self.capturedImage = nil
         }, content: {
