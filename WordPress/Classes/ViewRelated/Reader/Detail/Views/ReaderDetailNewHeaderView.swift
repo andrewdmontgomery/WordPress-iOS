@@ -113,6 +113,7 @@ class ReaderDetailHeaderViewModel: ObservableObject {
     @Published var siteName = String()
     @Published var postTitle: String? = nil // post title can be empty.
     @Published var tags: [String] = []
+    @Published var readingTimeString = String()
 
     @Published var showsAuthorName: Bool = true
 
@@ -151,6 +152,9 @@ class ReaderDetailHeaderViewModel: ObservableObject {
 
             self.postTitle = post.titleForDisplay() ?? nil
             self.tags = post.tagsForDisplay() ?? []
+
+            let readingTime = post.readingTime?.intValue ?? 0
+            self.readingTimeString = "\(readingTime > 0 ? String(readingTime) : "<1") min read"
         }
 
         DispatchQueue.main.async {
@@ -219,6 +223,8 @@ struct ReaderDetailNewHeaderView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 16.0) {
             headerRow
+            readingTimeRow
+                .padding([.top, .bottom], -8.0)
             if let postTitle = viewModel.postTitle {
                 Text(postTitle)
                     .font(.title)
@@ -244,6 +250,17 @@ struct ReaderDetailNewHeaderView: View {
                                size: .compact) {
                 viewModel.didTapFollowButton()
             }
+        }
+    }
+
+    var readingTimeRow: some View {
+        HStack(spacing: 4.0) {
+            Image("icon-reader-timer", bundle: nil)
+                .resizable()
+                .frame(width: 16.0, height: 16.0)
+            Text(viewModel.readingTimeString)
+                .font(.footnote)
+                .foregroundStyle(.secondary)
         }
     }
 
