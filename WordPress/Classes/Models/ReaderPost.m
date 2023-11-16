@@ -16,6 +16,8 @@ static NSString * const SourceAttributionImageTaxonomy = @"image-pick";
 static NSString * const SourceAttributionQuoteTaxonomy = @"quote-pick";
 static NSString * const SourceAttributionStandardTaxonomy = @"standard-pick";
 
+static NSInteger const AverageWordsReadPerMinute = 238;
+
 @implementation ReaderPost
 
 @dynamic authorDisplayName;
@@ -176,8 +178,15 @@ static NSString * const SourceAttributionStandardTaxonomy = @"standard-pick";
 
     post.isExternal = remotePost.isExternal;
     post.isJetpack = remotePost.isJetpack;
-    post.wordCount = remotePost.wordCount;
-    post.readingTime = remotePost.readingTime;
+
+    if (remotePost.wordCount != nil && remotePost.wordCount > 0) {
+        post.wordCount = remotePost.wordCount;
+        post.readingTime = remotePost.readingTime;
+    } else {
+        NSInteger contentWordCount = [remotePost.content componentsSeparatedByString:@" "].count;
+        post.wordCount = @(contentWordCount);
+        post.readingTime = @(contentWordCount / AverageWordsReadPerMinute);
+    }
 
     if (remotePost.sourceAttribution) {
         post.sourceAttribution = [self createOrReplaceFromRemoteDiscoverAttribution:remotePost.sourceAttribution forPost:post context:managedObjectContext];
