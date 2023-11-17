@@ -197,6 +197,9 @@
 		0188FE4C2AA62F800093EDA5 /* LockScreenTodayLikesCommentsStatWidgetConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0188FE4A2AA62F800093EDA5 /* LockScreenTodayLikesCommentsStatWidgetConfig.swift */; };
 		0189AF052ACAD89700F63393 /* ShoppingCartService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0189AF042ACAD89700F63393 /* ShoppingCartService.swift */; };
 		0189AF062ACAD89700F63393 /* ShoppingCartService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0189AF042ACAD89700F63393 /* ShoppingCartService.swift */; };
+		0190950A2B067EB1003A34D9 /* PromotionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019095092B067EB1003A34D9 /* PromotionView.swift */; };
+		0190950C2B0689E7003A34D9 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 0190950B2B0689E7003A34D9 /* Lottie */; };
+		0190950D2B075770003A34D9 /* JetpackWordPressLogoAnimation_rtl.json in Resources */ = {isa = PBXBuildFile; fileRef = 3F4EB39128AC561600B8DD86 /* JetpackWordPressLogoAnimation_rtl.json */; };
 		019660EC2B06754D00D11B41 /* MediaUploadProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019660EB2B06754D00D11B41 /* MediaUploadProgressView.swift */; };
 		019D699E2A5EA963003B676D /* RootViewCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019D699D2A5EA963003B676D /* RootViewCoordinatorTests.swift */; };
 		019D69A02A5EBF47003B676D /* WordPressAuthenticatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019D699F2A5EBF47003B676D /* WordPressAuthenticatorProtocol.swift */; };
@@ -5959,6 +5962,7 @@
 		0188FE472AA62D080093EDA5 /* LockScreenMultiStatWidgetViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenMultiStatWidgetViewProvider.swift; sourceTree = "<group>"; };
 		0188FE4A2AA62F800093EDA5 /* LockScreenTodayLikesCommentsStatWidgetConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenTodayLikesCommentsStatWidgetConfig.swift; sourceTree = "<group>"; };
 		0189AF042ACAD89700F63393 /* ShoppingCartService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartService.swift; sourceTree = "<group>"; };
+		019095092B067EB1003A34D9 /* PromotionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionView.swift; sourceTree = "<group>"; };
 		019660EB2B06754D00D11B41 /* MediaUploadProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaUploadProgressView.swift; sourceTree = "<group>"; };
 		019D699D2A5EA963003B676D /* RootViewCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewCoordinatorTests.swift; sourceTree = "<group>"; };
 		019D699F2A5EBF47003B676D /* WordPressAuthenticatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordPressAuthenticatorProtocol.swift; sourceTree = "<group>"; };
@@ -9646,6 +9650,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0190950C2B0689E7003A34D9 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9907,6 +9912,7 @@
 				C391B3952B065DDE00D0D5C9 /* AppClipState.swift */,
 				011752D72B0631FD00FFE4BF /* MediaUploadView.swift */,
 				011752D92B06320A00FFE4BF /* MediaUploadViewModel.swift */,
+				019095092B067EB1003A34D9 /* PromotionView.swift */,
 				C391B39B2B0662CD00D0D5C9 /* MediaUploadViewState.swift */,
 				C391B3992B0662AC00D0D5C9 /* DataPayload.swift */,
 				011752A72B062E8200FFE4BF /* Assets.xcassets */,
@@ -10890,7 +10896,7 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+		29B97314FDCFA39411CA2CEA = {
 			isa = PBXGroup;
 			children = (
 				3F20FDF3276BF21000DA3CAD /* Packages */,
@@ -18780,6 +18786,9 @@
 			dependencies = (
 			);
 			name = JetpackMediaAppClip;
+			packageProductDependencies = (
+				0190950B2B0689E7003A34D9 /* Lottie */,
+			);
 			productName = JetpackMediaAppClip;
 			productReference = 011752A12B062E8000FFE4BF /* JetpackMediaAppClip.app */;
 			productType = "com.apple.product-type.application.on-demand-install-capable";
@@ -19309,13 +19318,13 @@
 				bg,
 				sk,
 			);
-			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			mainGroup = 29B97314FDCFA39411CA2CEA;
 			packageReferences = (
 				3FF1442E266F3C2400138163 /* XCRemoteSwiftPackageReference "ScreenObject" */,
 				3FC2C33B26C4CF0A00C6D98F /* XCRemoteSwiftPackageReference "XCUITestHelpers" */,
 				17A8858B2757B97F0071FCA3 /* XCRemoteSwiftPackageReference "AutomatticAbout-swift" */,
 				3F3B23C02858A1B300CACE60 /* XCRemoteSwiftPackageReference "test-collector-swift" */,
-				3F411B6D28987E3F002513AE /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				3F411B6D28987E3F002513AE /* XCRemoteSwiftPackageReference "lottie-ios.git" */,
 				3F338B6F289BD3040014ADC5 /* XCRemoteSwiftPackageReference "Nimble" */,
 				0CD9FB852AFA71B9009D9C7A /* XCRemoteSwiftPackageReference "Charts" */,
 			);
@@ -19374,6 +19383,7 @@
 			files = (
 				011752AB2B062E8200FFE4BF /* Preview Assets.xcassets in Resources */,
 				011752A82B062E8200FFE4BF /* Assets.xcassets in Resources */,
+				0190950D2B075770003A34D9 /* JetpackWordPressLogoAnimation_rtl.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20941,11 +20951,11 @@
 			files = (
 			);
 			inputPaths = (
-				$SRCROOT/../Scripts/BuildPhases/CopyGutenbergJS.inputs.xcfilelist,
+				"$SRCROOT/../Scripts/BuildPhases/CopyGutenbergJS.inputs.xcfilelist",
 			);
 			name = "Copy Gutenberg JS";
 			outputFileListPaths = (
-				$SRCROOT/../Scripts/BuildPhases/CopyGutenbergJS.outputs.xcfilelist,
+				"$SRCROOT/../Scripts/BuildPhases/CopyGutenbergJS.outputs.xcfilelist",
 			);
 			outputPaths = (
 				"",
@@ -21116,13 +21126,13 @@
 			files = (
 			);
 			inputFileListPaths = (
-				$SRCROOT/../Scripts/BuildPhases/CopyGutenbergJS.inputs.xcfilelist,
+				"$SRCROOT/../Scripts/BuildPhases/CopyGutenbergJS.inputs.xcfilelist",
 			);
 			inputPaths = (
 			);
 			name = "Copy Gutenberg JS";
 			outputFileListPaths = (
-				$SRCROOT/../Scripts/BuildPhases/CopyGutenbergJS.outputs.xcfilelist,
+				"$SRCROOT/../Scripts/BuildPhases/CopyGutenbergJS.outputs.xcfilelist",
 			);
 			outputPaths = (
 			);
@@ -21253,6 +21263,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0190950A2B067EB1003A34D9 /* PromotionView.swift in Sources */,
 				011752A62B062E8100FFE4BF /* ContentView.swift in Sources */,
 				011752D82B0631FD00FFE4BF /* MediaUploadView.swift in Sources */,
 				C391B3982B065E4800D0D5C9 /* AppClipViewModel.swift in Sources */,
@@ -31005,7 +31016,7 @@
 				minimumVersion = 0.3.0;
 			};
 		};
-		3F411B6D28987E3F002513AE /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+		3F411B6D28987E3F002513AE /* XCRemoteSwiftPackageReference "lottie-ios.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
 			requirement = {
@@ -31040,6 +31051,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		0190950B2B0689E7003A34D9 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3F411B6D28987E3F002513AE /* XCRemoteSwiftPackageReference "lottie-ios.git" */;
+			productName = Lottie;
+		};
 		0CD9FB862AFA71B9009D9C7A /* DGCharts */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 0CD9FB852AFA71B9009D9C7A /* XCRemoteSwiftPackageReference "Charts" */;
@@ -31086,12 +31102,12 @@
 		};
 		3F411B6E28987E3F002513AE /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3F411B6D28987E3F002513AE /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			package = 3F411B6D28987E3F002513AE /* XCRemoteSwiftPackageReference "lottie-ios.git" */;
 			productName = Lottie;
 		};
 		3F44DD57289C379C006334CD /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3F411B6D28987E3F002513AE /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			package = 3F411B6D28987E3F002513AE /* XCRemoteSwiftPackageReference "lottie-ios.git" */;
 			productName = Lottie;
 		};
 		3FC2C33C26C4CF0A00C6D98F /* XCUITestHelpers */ = {

@@ -45,6 +45,7 @@ struct MediaUploadProgressView: View {
 
             Text(title)
                 .font(.title)
+                .fontWeight(.bold)
                 .multilineTextAlignment(.center)
             Text(description)
                 .font(.body)
