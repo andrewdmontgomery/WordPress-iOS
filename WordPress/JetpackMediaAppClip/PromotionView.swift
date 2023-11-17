@@ -3,7 +3,7 @@ import Lottie
 
 struct PromotionView: View {
     var body: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: 24) {
             LottieAnimationView(name: "JetpackWordPressLogoAnimation_rtl")
                 .frame(width: 50, height: 50)
             Text("Get the Jetpack Mobile App")

@@ -9,7 +9,7 @@ struct ContentView: View {
         VStack {
             switch vm.appState {
             case .marketing:
-                Text("Marketing view")
+                PromotionView()
             case .photosPicker(let payload):
                 MediaUploadView(vm: MediaUploadViewModel(payload: payload) { success in
                     if success {
@@ -22,13 +22,19 @@ struct ContentView: View {
                 })
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(gradientBackground)
         .onContinueUserActivity(NSUserActivityTypeBrowsingWeb, perform: { userActivity in
-            // grab the payload from the URL that loaded the App Clip
             guard let url = userActivity.webpageURL else {
                 return
             }
             vm.processUrl(url)
         })
-        .padding()
+    }
+
+    var gradientBackground: LinearGradient {
+        return LinearGradient(gradient: Gradient(colors: [Color(uiColor: UIColor.green.withAlphaComponent(0.05)), .white]),
+                              startPoint: .topTrailing,
+                              endPoint: .bottomLeading)
     }
 }
