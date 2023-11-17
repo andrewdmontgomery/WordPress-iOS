@@ -3,10 +3,9 @@ import StoreKit
 
 struct ContentView: View {
     @StateObject var vm = AppClipViewModel()
-    @State private var animationDelay: CGFloat = 0
 
     private var gradientBackground: LinearGradient {
-        return LinearGradient(gradient: Gradient(colors: [Color(uiColor: UIColor.green.withAlphaComponent(0.05)), .white]),
+        return LinearGradient(gradient: Gradient(colors: [Color(uiColor: UIColor.green.withAlphaComponent(0.085)), .white]),
                               startPoint: .topTrailing,
                               endPoint: .bottomLeading)
     }
@@ -15,17 +14,17 @@ struct ContentView: View {
         VStack {
             switch vm.appState {
             case .marketing:
-                PromotionView(animationDelay: animationDelay)
+                PromotionView()
                     .transition(.opacity)
             case .photosPicker(let payload):
                 MediaUploadView(vm: MediaUploadViewModel(payload: payload) { success in
                     if success {
-                        animationDelay = 5
-                        withAnimation(.easeInOut.delay(animationDelay)) {
-                            vm.appState = .marketing
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                            withAnimation {
+                                vm.appState = .marketing
+                            }
                         }
                     } else {
-                        animationDelay = 0
                         vm.appState = .marketing
                     }
                 })

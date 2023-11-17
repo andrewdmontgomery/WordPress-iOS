@@ -4,22 +4,16 @@ import StoreKit
 
 struct PromotionView: View {
     @State private var isAppStoreOverlayPresented: Bool = false
-    private let animationDelay: CGFloat
     private let animationView: AnimationView = {
         let animationView = AnimationView()
         let animation = Animation.named("JetpackWordPressLogoAnimation_rtl")
         animationView.animation = animation
         return animationView
     }()
-
-
-    init(animationDelay: CGFloat) {
-        self.animationDelay = animationDelay
-    }
+    @State private var bottomPadding: CGFloat = 0
 
     var body: some View {
         VStack(spacing: 24) {
-            Spacer()
             LottieAnimationView(animationView: animationView)
                 .frame(width: 50, height: 50)
             Text("Get the Jetpack Mobile App")
@@ -27,23 +21,26 @@ struct PromotionView: View {
                 .fontWeight(.bold)
                 .multilineTextAlignment(.center)
             Text("Take your WordPress site on the go")
-            Spacer()
-            Spacer()
         }
+        .padding(.bottom, bottomPadding)
        .appStoreOverlay(isPresented: $isAppStoreOverlayPresented, configuration: {
             SKOverlay.AppConfiguration(appIdentifier: "1565481562", position: .bottom)
         })
        .onAppear {
-           DispatchQueue.main.asyncAfter(deadline: .now() + animationDelay) {
+           DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                isAppStoreOverlayPresented = true
                animationView.play()
+               
+               withAnimation {
+                   bottomPadding = 108
+               }
            }
        }
     }
 }
 
 #Preview {
-    PromotionView(animationDelay: 0)
+    PromotionView()
 }
 
 struct LottieAnimationView: UIViewRepresentable {
