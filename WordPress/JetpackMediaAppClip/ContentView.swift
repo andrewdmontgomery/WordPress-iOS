@@ -10,16 +10,18 @@ struct ContentView: View {
             switch vm.appState {
             case .marketing:
                 PromotionView()
+                    .transition(.opacity)
             case .photosPicker(let payload):
                 MediaUploadView(vm: MediaUploadViewModel(payload: payload) { success in
                     if success {
-                        withAnimation(.easeInOut(duration: 1).delay(5)) {
+                        withAnimation(.easeInOut.delay(5.0)) {
                             vm.appState = .marketing
                         }
                     } else {
                         vm.appState = .marketing
                     }
                 })
+                .transition(.slide)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

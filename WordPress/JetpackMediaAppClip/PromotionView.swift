@@ -26,7 +26,10 @@ struct LottieAnimationView: UIViewRepresentable {
         let animationView = AnimationView()
         animationView.animation = Animation.named(name)
         animationView.contentMode = .scaleAspectFit
-        animationView.play()
+        // TODO: Delay in another place
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+            animationView.play()
+        }
         return animationView
     }
 
