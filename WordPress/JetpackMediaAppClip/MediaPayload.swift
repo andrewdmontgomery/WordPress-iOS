@@ -1,14 +1,12 @@
 import Foundation
 
-@MainActor
-struct DataPayload: Decodable {
+struct MediaPayload: Decodable {
     let user: String
     let pass: String
     let wpHost: String
 
-    private func getEndpoint() -> URL {
-        /// NOTE: For local dev this may have to get tweaked due to the hostname.
-        return URL(string: "\(wpHost)/wp-json/wp/v2/media")!
+    private var endPoint: URL? {
+        URL(string: "\(wpHost)/wp-json/wp/v2/media")
     }
 
     private func encodeCredentials() -> String? {
@@ -18,12 +16,14 @@ struct DataPayload: Decodable {
     }
 
     func createUploadRequest() -> URLRequest? {
-        guard let encodedCredentials = encodeCredentials() else {
-            print("Failed to encode credentials")
+        guard
+            let endPoint,
+            let encodedCredentials = encodeCredentials()
+        else {
+            print("Failed to create upload request.")
             return nil
         }
 
-        let endPoint = getEndpoint()
         var request = URLRequest(url: endPoint)
         request.setValue("image/jpg", forHTTPHeaderField: "Content-Type")
         request.setValue("attachment; filename=image.jpg", forHTTPHeaderField: "Content-Disposition")

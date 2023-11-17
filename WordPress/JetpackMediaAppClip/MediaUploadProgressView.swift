@@ -1,4 +1,5 @@
 import SwiftUI
+import PhotosUI
 
 struct MediaUploadProgressView: View {
     let state: State

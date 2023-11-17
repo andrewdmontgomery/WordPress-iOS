@@ -12,65 +12,73 @@ class MediaUploadViewModel: ObservableObject {
         }
     }
     private let completion: (Bool) -> ()
-    private let payload: DataPayload
+    private let payload: MediaPayload
 
-    init(payload: DataPayload, completion: @escaping (Bool) -> ()) {
+    init(payload: MediaPayload, completion: @escaping (Bool) -> ()) {
         self.payload = payload
         self.completion = completion
     }
 
-    @Published var imageSelection: PhotosPickerItem? = nil {
+    @Published var imageSelection: [PhotosPickerItem] = [] {
         didSet {
-            uploadPhotos()
+            uploadSelectedPhotos(imageSelection)
         }
     }
 
-    func uploadPhotos() {
-        guard let image = imageSelection else {
-            print("No image selected.")
+    private func uploadSelectedPhotos(_ photos: [PhotosPickerItem]) {
+        guard !photos.isEmpty else {
             return
         }
 
         viewState = .uploading
 
-        image.loadTransferable(type: Image.self) { [weak self] result in
-            guard let self else { return }
-
-            switch result {
-            case .success(let image?):
-                DispatchQueue.main.async {
-                    let renderer = ImageRenderer(content: image)
-                    let uiImage = renderer.uiImage
-                    guard let data = uiImage?.jpegData(compressionQuality: 80) else {
-                        print("Failed to get JPEG data.")
-                        return
+        Task {
+            do {
+                try await withThrowingTaskGroup(of: Void.self) { [weak self] group in
+                    guard let self else { return }
+                    for photo in photos {
+                        group.addTask {
+                            try await self.uploadPhoto(photo)
+                        }
                     }
-                    Task {
-                        await self.uploadPhoto(photoData: data)
+
+                    for try await _ in group {
+                        print("Image uploaded")
                     }
                 }
-            case .success(nil):
+                viewState = .success
+                completion(true)
+            } catch {
+                print("Upload failed: \(error)")
                 viewState = .failed
-                print("Got empty value instead of expected image.")
-            case .failure(let error):
-                viewState = .failed
-                print("Error loading image: \(error)")
             }
         }
     }
 
-    private func uploadPhoto(photoData: Data) async {
+    func retryUpload() {
+        uploadSelectedPhotos(imageSelection)
+    }
+
+    private func uploadPhoto(_ photo: PhotosPickerItem) async throws {
         guard let req = payload.createUploadRequest() else {
-            print("Failed to create upload request")
-            return
+            throw ImageUploadError.createRequestFailed
         }
 
-        do {
-            let (_, _) = try await URLSession.shared.upload(for: req, from: photoData)
-            viewState = .success
-            completion(true)
-        } catch {
-            viewState = .failed
+        guard let photoData = try await photo.loadTransferable(type: Data.self) else {
+            throw ImageUploadError.emptyPhotoData
+        }
+
+        guard let uiImageData = UIImage(data: photoData)?.jpegData(compressionQuality: 80) else {
+            throw ImageUploadError.dataConversionFailed
+        }
+
+        let (_, response) = try await URLSession.shared.upload(for: req, from: uiImageData)
+
+        guard
+            let httpResponse = response as? HTTPURLResponse,
+            200 ..< 300 ~= httpResponse.statusCode
+        else {
+            throw ImageUploadError.badResponse
         }
     }
 }

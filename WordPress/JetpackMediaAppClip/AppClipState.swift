@@ -1,6 +1,6 @@
 import Foundation
 
 enum AppClipState {
-    case photosPicker(DataPayload)
+    case photosPicker(MediaPayload)
     case marketing
 }

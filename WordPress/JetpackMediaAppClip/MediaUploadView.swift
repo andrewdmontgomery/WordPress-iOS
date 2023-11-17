@@ -28,7 +28,7 @@ struct MediaUploadView: View {
                 description: "You couldn't send your media to web",
                 buttonTitle: "Retry"
             ) {
-                vm.uploadPhotos()
+                vm.retryUpload()
             }
         }
     }

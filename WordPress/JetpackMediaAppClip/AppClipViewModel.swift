@@ -4,7 +4,7 @@ import Foundation
 class AppClipViewModel: ObservableObject {
     @Published var appState: AppClipState = .marketing
 
-    var payload: DataPayload? {
+    var payload: MediaPayload? {
         didSet {
             if let payload {
                 print("Payload data from URL successfully set.")
@@ -31,7 +31,7 @@ class AppClipViewModel: ObservableObject {
         }
 
         let jsonDecoder = JSONDecoder()
-        guard let jsonData = try? jsonDecoder.decode(DataPayload.self, from: data) else {
+        guard let jsonData = try? jsonDecoder.decode(MediaPayload.self, from: data) else {
             print("Couldn't decode URL payload.")
             return
         }
