@@ -3,21 +3,29 @@ import StoreKit
 
 struct ContentView: View {
     @StateObject var vm = AppClipViewModel()
-    @State private var showRecommended = true
+    @State private var animationDelay: CGFloat = 0
+
+    private var gradientBackground: LinearGradient {
+        return LinearGradient(gradient: Gradient(colors: [Color(uiColor: UIColor.green.withAlphaComponent(0.05)), .white]),
+                              startPoint: .topTrailing,
+                              endPoint: .bottomLeading)
+    }
 
     var body: some View {
         VStack {
             switch vm.appState {
             case .marketing:
-                PromotionView()
+                PromotionView(animationDelay: animationDelay)
                     .transition(.opacity)
             case .photosPicker(let payload):
                 MediaUploadView(vm: MediaUploadViewModel(payload: payload) { success in
                     if success {
-                        withAnimation(.easeInOut.delay(5.0)) {
+                        animationDelay = 5
+                        withAnimation(.easeInOut.delay(animationDelay)) {
                             vm.appState = .marketing
                         }
                     } else {
+                        animationDelay = 0
                         vm.appState = .marketing
                     }
                 })
@@ -32,11 +40,5 @@ struct ContentView: View {
             }
             vm.processUrl(url)
         })
-    }
-
-    var gradientBackground: LinearGradient {
-        return LinearGradient(gradient: Gradient(colors: [Color(uiColor: UIColor.green.withAlphaComponent(0.05)), .white]),
-                              startPoint: .topTrailing,
-                              endPoint: .bottomLeading)
     }
 }
