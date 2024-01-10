@@ -4,6 +4,7 @@ import PackageDescription
 
 let jetpackStatsWidgetsCoreName = "JetpackStatsWidgetsCore"
 let designSystemName = "DesignSystem"
+let gravatar = "Gravatar"
 
 let package = Package(
     name: "Modules",
@@ -13,6 +14,7 @@ let package = Package(
     products: [
         .library(name: jetpackStatsWidgetsCoreName, targets: [jetpackStatsWidgetsCoreName]),
         .library(name: designSystemName, targets: [designSystemName]),
+        .library(name: gravatar, targets: [gravatar])
     ],
     targets: [
         .target(name: jetpackStatsWidgetsCoreName),
@@ -20,6 +22,7 @@ let package = Package(
             name: "\(jetpackStatsWidgetsCoreName)Tests",
             dependencies: [.target(name: jetpackStatsWidgetsCoreName)]
         ),
-        .target(name: designSystemName)
+        .target(name: designSystemName),
+        .target(name: gravatar)
     ]
 )
