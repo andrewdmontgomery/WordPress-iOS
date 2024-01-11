@@ -1,15 +1,12 @@
 import Foundation
 import CocoaLumberjack
 import WordPressKit
+import Gravatar
 
-
-@objc public enum GravatarServiceError: Int, Error {
-    case invalidAccountInfo
-}
 
 /// This Service exposes all of the valid operations we can execute, to interact with the Gravatar Service.
 ///
-open class GravatarService {
+open class WPGravatarService {
 
     /// This method fetches the Gravatar profile for the specified email address.
     ///
@@ -18,23 +15,17 @@ open class GravatarService {
     ///     - completion: A completion block.
     ///
     open func fetchProfile(email: String, onCompletion: @escaping ((_ profile: GravatarProfile?) -> Void)) {
-        let remote = gravatarServiceRemote()
-        remote.fetchProfile(email, success: { remoteProfile in
-            var profile = GravatarProfile()
-            profile.profileID = remoteProfile.profileID
-            profile.hash = remoteProfile.hash
-            profile.requestHash = remoteProfile.requestHash
-            profile.profileUrl = remoteProfile.profileUrl
-            profile.preferredUsername = remoteProfile.preferredUsername
-            profile.thumbnailUrl = remoteProfile.thumbnailUrl
-            profile.name = remoteProfile.name
-            profile.displayName = remoteProfile.displayName
-            onCompletion(profile)
+        let gravatar = GravatarService()
 
-        }, failure: { error in
-            DDLogError(error.debugDescription)
-            onCompletion(nil)
-        })
+        gravatar.fetchProfile(email: email) { result in
+            switch result {
+            case .success(let profile):
+                onCompletion(profile)
+            case .failure(let error):
+                DDLogError(error.debugDescription)
+                onCompletion(nil)
+            }
+        }
     }
 
 
