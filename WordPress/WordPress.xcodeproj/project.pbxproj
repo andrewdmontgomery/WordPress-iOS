@@ -1267,6 +1267,7 @@
 		46F584B82624E6380010A723 /* BlockEditorSettings+GutenbergEditorSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F584B72624E6380010A723 /* BlockEditorSettings+GutenbergEditorSettings.swift */; };
 		46F584B92624E6380010A723 /* BlockEditorSettings+GutenbergEditorSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F584B72624E6380010A723 /* BlockEditorSettings+GutenbergEditorSettings.swift */; };
 		46F58501262605930010A723 /* BlockEditorSettingsServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F58500262605930010A723 /* BlockEditorSettingsServiceTests.swift */; };
+		4957F1D22B50AF56001D72C8 /* Gravatar in Frameworks */ = {isa = PBXBuildFile; productRef = 4957F1D12B50AF56001D72C8 /* Gravatar */; };
 		4A072CD229093704006235BE /* AsyncBlockOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A072CD129093704006235BE /* AsyncBlockOperation.swift */; };
 		4A072CD329093704006235BE /* AsyncBlockOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A072CD129093704006235BE /* AsyncBlockOperation.swift */; };
 		4A17C1A4281A823E0001FFE5 /* NSManagedObject+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A17C1A3281A823E0001FFE5 /* NSManagedObject+Fixture.swift */; };
@@ -9515,6 +9516,7 @@
 				FF75933B1BE2423800814D3B /* Photos.framework in Frameworks */,
 				93E5285619A77BAC003A1A9C /* NotificationCenter.framework in Frameworks */,
 				93A3F7DE1843F6F00082FEEA /* CoreTelephony.framework in Frameworks */,
+				4957F1D22B50AF56001D72C8 /* Gravatar in Frameworks */,
 				A01C542E0E24E88400D411F2 /* SystemConfiguration.framework in Frameworks */,
 				3F411B6F28987E3F002513AE /* Lottie in Frameworks */,
 				374CB16215B93C0800DD0EBC /* AudioToolbox.framework in Frameworks */,
@@ -18592,6 +18594,7 @@
 				0CD9FB882AFA71C2009D9C7A /* DGCharts */,
 				3F9F232A2B0B27DD00B56061 /* JetpackStatsWidgetsCore */,
 				08E63FCE2B28E53400747E21 /* DesignSystem */,
+				4957F1D12B50AF56001D72C8 /* Gravatar */,
 			);
 			productName = WordPress;
 			productReference = 1D6058910D05DD3D006BFB54 /* WordPress.app */;
@@ -30366,6 +30369,10 @@
 		3FFB3F232AFC730C00A742B0 /* JetpackStatsWidgetsCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = JetpackStatsWidgetsCore;
+		};
+		4957F1D12B50AF56001D72C8 /* Gravatar */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Gravatar;
 		};
 		EA14532529AD874C001F3143 /* BuildkiteTestCollector */ = {
 			isa = XCSwiftPackageProductDependency;
