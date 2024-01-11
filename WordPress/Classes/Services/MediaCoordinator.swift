@@ -441,6 +441,10 @@ class MediaCoordinator: NSObject {
                              withProperties: properties,
                              with: media.blog)
     }
+    
+    func trackPauseOf(_ media: Media) {
+        WPAppAnalytics.track(WPAppAnalytics.editorUploadMediaFailed)
+    }
 
     // MARK: - Progress
 

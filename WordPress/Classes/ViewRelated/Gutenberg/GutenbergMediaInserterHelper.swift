@@ -91,6 +91,10 @@ class GutenbergMediaInserterHelper: NSObject {
             if media.remoteStatus == .failed {
                 gutenberg.mediaUploadUpdate(id: media.gutenbergUploadID, state: .uploading, progress: 0, url: media.absoluteThumbnailLocalURL, serverID: nil)
                 let finalState: Gutenberg.MediaUploadState = ReachabilityUtils.isInternetReachable() ? .failed : .paused
+                if finalState == .paused {
+                    let info = MediaAnalyticsInfo(origin: .editor(.none), selectionMethod: mediaSelectionMethod)
+                    WPAppAnalytics.track(info.pausedEvent, with: media.blog)
+                }
                 gutenberg.mediaUploadUpdate(id: media.gutenbergUploadID, state: finalState, progress: 0, url: nil, serverID: nil)
             }
         }
@@ -174,6 +178,8 @@ class GutenbergMediaInserterHelper: NSObject {
         case .thumbnailReady(let url) where ReachabilityUtils.isInternetReachable() && media.remoteStatus == .failed:
             gutenberg.mediaUploadUpdate(id: mediaUploadID, state: .failed, progress: 0, url: url, serverID: nil)
         case .thumbnailReady(let url) where !ReachabilityUtils.isInternetReachable() && media.remoteStatus == .failed:
+            let info = MediaAnalyticsInfo(origin: .editor(.none), selectionMethod: mediaSelectionMethod)
+            WPAppAnalytics.track(info.pausedEvent, with: media.blog)
             // The progress value passed is ignored by the editor, allowing the UI to retain the last known progress before pausing
             gutenberg.mediaUploadUpdate(id: mediaUploadID, state: .paused, progress: 0, url: url, serverID: nil)
         case .thumbnailReady(let url):
@@ -225,6 +231,8 @@ class GutenbergMediaInserterHelper: NSObject {
             case NSURLErrorNetworkConnectionLost: fallthrough
             case NSURLErrorNotConnectedToInternet: fallthrough
             case NSURLErrorTimedOut where !ReachabilityUtils.isInternetReachable():
+                let info = MediaAnalyticsInfo(origin: .editor(.none), selectionMethod: mediaSelectionMethod)
+                WPAppAnalytics.track(info.pausedEvent, with: media.blog)
                 // The progress value passed is ignored by the editor, allowing the UI to retain the last known progress before pausing
                 gutenberg.mediaUploadUpdate(id: mediaUploadID, state: .paused, progress: 0, url: nil, serverID: nil)
             default:

@@ -76,6 +76,8 @@ public struct MediaAnalyticsInfo {
             return .editorUploadMediaRetried
         }
     }
+    
+    var pausedEvent: WPAnalyticsStat = .editorUploadMediaFailed
 
     func properties(for media: Media) -> [String: Any] {
         guard let selectionMethod = selectionMethod else {
