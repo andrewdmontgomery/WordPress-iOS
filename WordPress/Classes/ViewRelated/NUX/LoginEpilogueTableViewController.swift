@@ -304,8 +304,8 @@ private extension LoginEpilogueTableViewController {
             /// Load: Gravatar's Metadata
             ///
             let service = GravatarService()
-            service.fetchProfile(email: userProfile.email) { gravatarProfile in
-                if let gravatarProfile = gravatarProfile {
+            service.fetchProfile(email: userProfile.email) { gravatarProfileResult in
+                if case let .success(gravatarProfile) = gravatarProfileResult {
                     epilogueInfo.update(with: gravatarProfile)
                 }
 
