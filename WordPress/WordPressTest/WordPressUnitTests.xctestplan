@@ -51,6 +51,13 @@
         "identifier" : "E16AB92914D978240047A2E5",
         "name" : "WordPressTest"
       }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "GravatarTests",
+        "name" : "GravatarTests"
+      }
     }
   ],
   "version" : 1
