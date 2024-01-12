@@ -37,30 +37,22 @@ open class WPGravatarService {
     ///     - completion: An optional closure to be executed on completion.
     ///
     open func uploadImage(_ image: UIImage, forAccount account: WPAccount, completion: ((_ error: NSError?) -> ())? = nil) {
-        guard
-            let accountToken = account.authToken, !accountToken.isEmpty,
-            let accountEmail = account.email, !accountEmail.isEmpty else {
-                completion?(GravatarServiceError.invalidAccountInfo as NSError)
-                return
-        }
+        let account = GravatarValidatedAccount.account(email: account.email, authToken: account.authToken)
 
-        let email = accountEmail.trimmingCharacters(in: CharacterSet.whitespaces).lowercased()
+        switch account {
+        case .invalid(let error):
+            completion?(error as NSError)
+        case .valid(let account):
+            let gravatar = GravatarService()
+            gravatar.uploadImage(image, gravatarAccount: account) { error in
+                if let theError = error {
+                    DDLogError("GravatarService.uploadImage Error: \(theError)")
+                } else {
+                    DDLogInfo("GravatarService.uploadImage Success!")
+                }
 
-        let remote = gravatarServiceRemote()
-        remote.uploadImage(image, accountEmail: email, accountToken: accountToken) { (error) in
-            if let theError = error {
-                DDLogError("GravatarService.uploadImage Error: \(theError)")
-            } else {
-                DDLogInfo("GravatarService.uploadImage Success!")
+                completion?(error)
             }
-
-            completion?(error)
         }
-    }
-
-    /// Overridden by tests for mocking.
-    ///
-    func gravatarServiceRemote() -> GravatarServiceRemote {
-        return GravatarServiceRemote()
     }
 }
