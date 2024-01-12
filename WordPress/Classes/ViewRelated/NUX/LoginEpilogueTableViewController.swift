@@ -1,4 +1,5 @@
 import UIKit
+import Gravatar
 import WordPressShared
 import WordPressAuthenticator
 
