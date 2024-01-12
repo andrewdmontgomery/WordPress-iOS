@@ -23,6 +23,10 @@ let package = Package(
             dependencies: [.target(name: jetpackStatsWidgetsCoreName)]
         ),
         .target(name: designSystemName),
-        .target(name: gravatar)
+        .target(name: gravatar),
+        .testTarget(
+            name: "\(gravatar)Tests",
+            dependencies: [.target(name: gravatar)]
+        )
     ]
 )
