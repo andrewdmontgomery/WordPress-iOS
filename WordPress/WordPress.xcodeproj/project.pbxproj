@@ -2341,6 +2341,7 @@
 		91D8364121946EFB008340B2 /* GutenbergMediaPickerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D8364021946EFB008340B2 /* GutenbergMediaPickerHelper.swift */; };
 		91DCE84621A6A7F50062F134 /* PostEditor+MoreOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DCE84521A6A7F50062F134 /* PostEditor+MoreOptions.swift */; };
 		91DCE84821A6C58C0062F134 /* PostEditor+Publish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DCE84721A6C58C0062F134 /* PostEditor+Publish.swift */; };
+		91EF1E692B57D3C70021CF10 /* Gravatar in Frameworks */ = {isa = PBXBuildFile; productRef = 91EF1E682B57D3C70021CF10 /* Gravatar */; };
 		930F09171C7D110E00995926 /* ShareExtensionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930F09161C7D110E00995926 /* ShareExtensionService.swift */; };
 		930F09191C7E1C1E00995926 /* ShareExtensionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930F09161C7D110E00995926 /* ShareExtensionService.swift */; };
 		931215E1267DE1C0008C3B69 /* StatsTotalRowDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931215E0267DE1C0008C3B69 /* StatsTotalRowDataTests.swift */; };
@@ -9661,6 +9662,7 @@
 				FABB262E2602FC2C00C8785C /* MediaPlayer.framework in Frameworks */,
 				3F44DD58289C379C006334CD /* Lottie in Frameworks */,
 				FABB262F2602FC2C00C8785C /* CoreMedia.framework in Frameworks */,
+				91EF1E692B57D3C70021CF10 /* Gravatar in Frameworks */,
 				FABB26302602FC2C00C8785C /* AVFoundation.framework in Frameworks */,
 				FABB26312602FC2C00C8785C /* Foundation.framework in Frameworks */,
 				FABB26322602FC2C00C8785C /* Security.framework in Frameworks */,
@@ -18848,6 +18850,7 @@
 				0CD9FB862AFA71B9009D9C7A /* DGCharts */,
 				3F9F232C2B0B281400B56061 /* JetpackStatsWidgetsCore */,
 				08E63FCC2B28E52B00747E21 /* DesignSystem */,
+				91EF1E682B57D3C70021CF10 /* Gravatar */,
 			);
 			productName = WordPress;
 			productReference = FABB26522602FC2C00C8785C /* Jetpack.app */;
@@ -30361,6 +30364,10 @@
 			productName = JetpackStatsWidgetsCore;
 		};
 		4957F1D12B50AF56001D72C8 /* Gravatar */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Gravatar;
+		};
+		91EF1E682B57D3C70021CF10 /* Gravatar */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Gravatar;
 		};
