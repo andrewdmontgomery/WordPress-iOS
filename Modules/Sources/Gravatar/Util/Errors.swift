@@ -24,6 +24,24 @@ public enum GravatarRequestError {
     case taskCancelled
 }
 
+public enum GravatarImageSettingError {
+    
+    /// The input resource is empty or `nil`.
+    case emptySource
+    
+    /// The resource task is finished, but it is not the one expected now. This usually happens when you set another
+    /// resource on the view without cancelling the current on-going one. The previous setting task will fail with
+    /// this `.notCurrentSourceTask` error when a result got, regardless of it being successful or not for that task.
+    /// The result of this original task is contained in the associated value.
+    /// - result: The `GravatarImageDownloadResult` if the source task is finished without problem. `nil` if an error
+    ///           happens.
+    /// - error: The `Error` if an issue happens during image setting task. `nil` if the task finishes without
+    ///          problem.
+    /// - source: The original source value of the task.
+    case notCurrentSourceTask(result: GravatarImageDownloadResult?, error: Error?, source: URL)
+
+}
+
 public enum GravatarResponseError {
     
     /// The response is not a valid URL response. Code 2001.
@@ -45,9 +63,16 @@ public enum GravatarResponseError {
 
     /// The task is cancelled.
     case cancelled
+    
+    /// Could not initialize the image from the downloaded data.
+    case imageInitializationFailed
+    
+    /// URL of response doesn't match with the request (request is outdated)
+    case urlMismatch
 }
 
 public enum GravatarError: Error {
     case requestError(reason: GravatarRequestError)
     case responseError(reason: GravatarResponseError)
+    case imageSettingError(reason: GravatarImageSettingError)
 }

@@ -25,13 +25,19 @@ public enum GravatarDownloadOption {
     
     // Transition style to use when setting the new image downloaded. Default: .fade(0.3)
     case transition(ImageTransition)
-        
+    
     // Preferred size of the image that will be downloaded. If not provided, layoutIfNeeded() is called on the view to get its bounds properly.
     // You can pass the preferred size to avoid the layoutIfNeeded() call and get a performance benefit.
     case preferredSize(CGSize)
     
     // By setting this option, the placeholder will be ignored and the current image will be kept while downloading the new image.
     case keepCurrentImageWhileLoading
+    
+    // Ignore the cached value and re-download the image
+    case forceRefresh
+    
+    // Cancels the ongoing download in the view wrapper if a new download starts.
+    case cancelOngoingDownload
 }
 
 // Parsed download options
@@ -43,6 +49,8 @@ public struct GravatarDownloadOptions {
     var transition: ImageTransition = .fade(0.3)
     var preferredSize: CGSize? = nil
     var keepCurrentImageWhileLoading = false
+    var forceRefresh = false
+    var shouldCancelOngoingDownload = false
 
     init(options: [GravatarDownloadOption]?) {
         guard let options = options else { return }
@@ -58,6 +66,10 @@ public struct GravatarDownloadOptions {
                 preferredSize = size
             case .keepCurrentImageWhileLoading:
                 keepCurrentImageWhileLoading = true
+            case .forceRefresh:
+                forceRefresh = true
+            case .cancelOngoingDownload:
+                shouldCancelOngoingDownload = true
             }
         }
     }

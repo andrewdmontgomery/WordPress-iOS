@@ -17,11 +17,4 @@ public struct GravatarImageDownloadResult {
 
     /// The `URL` which this result is related to.
     public let sourceURL: URL
-    
-    /// Gets the data behind the result.
-    ///
-    /// - Note:
-    /// This can be a time-consuming action, so if you need to use the data for multiple times, it is suggested to hold
-    /// it and prevent keeping calling this too frequently.
-    // public let data: () -> Data?
 }
